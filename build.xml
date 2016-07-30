@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright 2008-present Shaiksphere, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<project name="mindsmine" default="test">
+    <description>Ant script for mindsmine - JEMS (Java Enhanced MethodS)</description>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!--  General Properties  -->
+
+    <property file="build.properties"/>
+
+    <property name="build.compiler" value="extJavac"/>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Properties -->
+
+    <property name="build.source.code" location="${path.to.build}/source/java"/>
+    <property name="build.source.compiled" location="${path.to.build}/source/classes"/>
+
+    <property name="build.test.code" value="${path.to.build}/test/java"/>
+    <property name="build.test.compiled" value="${path.to.build}/test/classes"/>
+    <property name="build.test.reports" value="${path.to.build}/test/reports"/>
+
+    <property name="output.code" value="${path.to.output}/code"/>
+    <property name="output.docs" value="${path.to.output}/docs/${division.name}/${product.folder}/${product.version}"/>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Library files -->
+
+    <path id="junit.files">
+        <fileset dir="${path.to.test}/lib" includes="*.jar"/>
+    </path>
+
+    <path id="compiled.files">
+        <pathelement location="${build.source.compiled}"/>
+        <pathelement location="${build.test.compiled}"/>
+    </path>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Publishes the library -->
+
+    <target name="package" description="Packages the library">
+        <echo level="info" message="Began - Packages ${product.name}"/>
+        <echo/>
+        <antcall target="clean"/>
+        <antcall target="generate.docs"/>
+        <antcall target="clean.unwanted"/>
+        <echo/>
+        <echo level="info" message="Ended - Packages ${product.name}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Generate documentation -->
+
+    <target name="generate.docs" depends="prepare.for.docs" description="Generates Documentation">
+        <echo level="info" message="Began - Generating ${product.name} Documentation"/>
+        <echo/>
+        <javadoc author="true" version="true" use="true"
+                 windowtitle="${product.name}"
+                 destdir="${output.docs}"
+                 sourcepath="${build.source.code}">
+            <doctitle><![CDATA[<h1><center>${product.name} ${product.version}</center></h1>]]></doctitle>
+            <header><![CDATA[<strong>${product.name} ${product.version}</strong>]]></header>
+            <footer><![CDATA[<strong>${product.name} ${product.version}</strong>]]></footer>
+            <bottom><![CDATA[Copyright &#169; 2008, ${IMPL_YEAR}, ${company.link}. All rights reserved.]]></bottom>
+            <group title="Utilities - Simple Data Type Extensions" packages="com.shaiksphere.mindsmine.jems"/>
+            <group title="Units" packages="com.shaiksphere.mindsmine.jems.units"/>
+            <!--<group title="Generic" packages="com.shaiksphere.mindsmine.jems.utilities.generic*"/>-->
+            <!--<group title="DateTime" packages="com.shaiksphere.mindsmine.jems..utilities.dateTime*"/>-->
+            <!--<group title="SQL" packages="com.shaiksphere.mindsmine.jems.utilities.sql*"/>-->
+            <!--<group title="Wrappers" packages="com.shaiksphere.mindsmine.jems.wrappers*"/>-->
+            <!--<group title="Exceptions" packages="com.shaiksphere.mindsmine.jems.exceptions*"/>-->
+            <!--<group title="Constants" packages="com.shaiksphere.mindsmine.jems.constants*"/>-->
+            <link href="http://docs.oracle.com/javase/8/docs/api/"/>
+        </javadoc>
+        <echo/>
+        <echo level="info" message="Ended - Generating ${product.name} Documentation"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Prepare for documentation -->
+
+    <target name="prepare.for.docs" depends="build" description="Prepare for documentation">
+        <echo level="info" message="Began - Preparing to document ${product.name}"/>
+        <echo/>
+        <echo level="info" message="Began - Creating necessary folders"/>
+        <echo/>
+        <mkdir dir="${output.docs}"/>
+        <echo/>
+        <echo level="info" message="Ended - Creating necessary folders"/>
+        <echo/>
+        <echo level="info" message="Ended - Preparing to document ${product.name}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Builds the library -->
+
+    <target name="build" depends="prepare.for.build" description="Builds the deliverable file">
+        <echo level="info" message="Began - Generating ${product.filename}"/>
+        <echo/>
+        <property name="download.filename" value="${output.code}/${product.filename}"/>
+        <echo/>
+        <jar destfile="${download.filename}"
+             basedir="${build.source.compiled}"
+             includes="**/*.class"
+             compress="true">
+            <manifest>
+                <attribute name="Built-By" value="${company.name}"/>
+                <attribute name="Implementation-Title" value="${product.name}"/>
+                <attribute name="Implementation-Version" value="${IMPL_VERSION}"/>
+                <attribute name="Implementation-Vendor" value="${company.name}"/>
+                <attribute name="Specification-Title" value="${product.name}"/>
+                <attribute name="Specification-Version" value="${IMPL_VERSION}"/>
+                <attribute name="Specification-Vendor" value="${company.name}"/>
+            </manifest>
+        </jar>
+        <echo/>
+        <echo level="info" message="Ended - Generating ${product.filename}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Prepare for building -->
+
+    <target name="prepare.for.build" depends="test" description="Prepare for building">
+        <echo level="info" message="Began - Preparing to build ${product.name}"/>
+        <echo/>
+        <echo level="info" message="Began - Creating necessary folders"/>
+        <echo/>
+        <mkdir dir="${output.code}"/>
+        <echo/>
+        <echo level="info" message="Ended - Creating necessary folders"/>
+        <echo/>
+        <echo level="info" message="Ended - Preparing to build ${product.name}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Tests the library -->
+
+    <target name="test" depends="compile" description="Tests the library">
+        <echo level="info" message="Began - Testing ${product.name} code"/>
+        <echo/>
+        <junit printsummary="yes" haltonfailure="yes">
+            <formatter type="plain"/>
+            <classpath refid="junit.files"/>
+            <classpath refid="compiled.files"/>
+            <batchtest fork="yes" todir="${build.test.reports}">
+                <fileset dir="${build.test.code}">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+        <echo/>
+        <echo level="info" message="Ended - Testing ${product.name} code"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Compiles -->
+
+    <target name="compile" depends="prepare.for.compile" description="Compiles the code">
+        <echo level="info" message="Began - Compiling ${product.name} code"/>
+        <echo/>
+        <echo level="info" message="Began - Compiling ${product.name} source code"/>
+        <echo/>
+        <javac debug="on"
+               debuglevel="${compile.debugLevel}"
+               deprecation="${compile.deprecation}"
+               nowarn="${compile.noWarn}"
+               includeantruntime="false"
+               destdir="${build.source.compiled}">
+            <compilerarg value="${compile.args}"/>
+            <exclude name="**/package-info.java"/>
+            <src location="${build.source.code}"/>
+        </javac>
+        <echo/>
+        <echo level="info" message="Ended - Building ${product.name} source code"/>
+        <echo/>
+        <echo/>
+        <echo level="info" message="Began - Compiling ${product.name} test code"/>
+        <echo/>
+        <javac debug="on"
+               debuglevel="${compile.debugLevel}"
+               deprecation="${compile.deprecation}"
+               nowarn="${compile.noWarn}"
+               includeantruntime="false"
+               destdir="${build.test.compiled}">
+            <classpath refid="junit.files"/>
+            <classpath>
+                <pathelement location="${build.source.compiled}"/>
+            </classpath>
+            <compilerarg value="${compile.args}"/>
+            <exclude name="**/package-info.java"/>
+            <src location="${build.test.code}"/>
+        </javac>
+        <echo/>
+        <echo level="info" message="Ended - Building ${product.name} test code"/>
+        <echo/>
+        <echo level="info" message="Ended - Building ${product.name} code"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Prepares for Compile -->
+
+    <target name="prepare.for.compile" depends="init" description="Prepare for compiling">
+        <echo level="info" message="Began - Preparing to compile ${product.name}"/>
+        <echo/>
+        <echo level="info" message="Began - Creating necessary folders"/>
+        <echo/>
+        <mkdir dir="${build.source.code}"/>
+        <mkdir dir="${build.source.compiled}"/>
+        <mkdir dir="${build.test.code}"/>
+        <mkdir dir="${build.test.compiled}"/>
+        <mkdir dir="${build.test.reports}"/>
+        <echo/>
+        <echo level="info" message="Ended - Creating necessary folders"/>
+        <echo/>
+        <echo/>
+        <echo level="info" message="Began - Copying ${product.name} source code"/>
+        <echo/>
+        <copy todir="${build.source.code}">
+            <fileset dir="${path.to.src}/java"/>
+            <filterchain>
+                <replacetokens>
+                    <token key="BUILD_TIMESTAMP" value="${IMPL_VERSION}"/>
+                    <token key="BUILD_YEAR" value="${IMPL_YEAR}"/>
+                    <token key="COMPANY_LINK" value="${company.link}"/>
+                    <token key="PRODUCT_NAME" value="${product.name}"/>
+                    <token key="PRODUCT_VERSION" value="${product.version}"/>
+                    <token key="ERROR_PERMITTED_ARRAY" value="${error.permitted.array}"/>
+                    <token key="ERROR_PERMITTED_BOOLEAN" value="${error.permitted.boolean}"/>
+                    <token key="ERROR_PERMITTED_FUNCTION" value="${error.permitted.function}"/>
+                    <token key="ERROR_PERMITTED_NUMBER" value="${error.permitted.number}"/>
+                    <token key="ERROR_PERMITTED_OBJECT" value="${error.permitted.object}"/>
+                    <token key="ERROR_PERMITTED_STRING" value="${error.permitted.string}"/>
+                </replacetokens>
+            </filterchain>
+        </copy>
+        <echo/>
+        <echo level="info" message="Ended - Copying ${product.name} source code"/>
+        <echo/>
+        <echo/>
+        <echo level="info" message="Began - Copying ${product.name} test code"/>
+        <echo/>
+        <copy todir="${build.test.code}">
+            <fileset dir="${path.to.test}/java"/>
+        </copy>
+        <echo/>
+        <echo level="info" message="Ended - Copying ${product.name} test code"/>
+        <echo/>
+        <echo level="info" message="Ended - Preparing to compile ${product.name}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Initiation -->
+
+    <target name="init" description="Initialises the build process">
+        <echo level="info" message="Began - Initialisation of ${product.name}"/>
+        <echo/>
+        <tstamp>
+            <format property="IMPL_YEAR" pattern="yyyy"/>
+        </tstamp>
+        <property name="IMPL_VERSION" value="${DSTAMP}.${TSTAMP}"/>
+        <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+        <echo level="info" message="Impl Year    : ${IMPL_YEAR}"/>
+        <echo level="info" message="Debug Level  : ${compile.debugLevel}"/>
+        <echo level="info" message="No Warn      : ${compile.noWarn} "/>
+        <echo level="info" message="Deprecation  : ${compile.deprecation}"/>
+        <echo level="info" message="Compiler Args: ${compile.args}"/>
+        <echo/>
+        <echo level="info" message="Ended - Initialisation of ${product.name}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Cleaning -->
+
+    <target name="clean" depends="clean.unwanted" description="Cleans build folders">
+        <echo level="info" message="Began - Cleaning ${product.name}"/>
+        <echo/>
+        <delete dir="${path.to.output}"/>
+        <echo/>
+        <echo level="info" message="Ended - Cleaning ${product.name}"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++ -->
+
+    <target name="clean.unwanted" description="Cleans unwanted folders">
+        <echo level="info" message="Began - Cleaning unwanted ${product.name} folders"/>
+        <echo/>
+        <delete dir="${path.to.build}"/>
+        <echo/>
+        <echo level="info" message="Ended - Cleaning unwanted ${product.name} folders"/>
+    </target>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+</project>
