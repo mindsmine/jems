@@ -30,11 +30,11 @@ limitations under the License.
     <!-- ++++++++++++++++++++++++++++++++++++++ -->
     <!-- Properties -->
 
-    <property name="build.source.code" location="${path.to.build}/source/java"/>
-    <property name="build.source.compiled" location="${path.to.build}/source/classes"/>
+    <property name="build.source.code" location="${path.to.build}/source/code"/>
+    <property name="build.source.compiled" location="${path.to.build}/source/compiled"/>
 
-    <property name="build.test.code" value="${path.to.build}/test/java"/>
-    <property name="build.test.compiled" value="${path.to.build}/test/classes"/>
+    <property name="build.test.code" value="${path.to.build}/test/code"/>
+    <property name="build.test.compiled" value="${path.to.build}/test/compiled"/>
     <property name="build.test.reports" value="${path.to.build}/test/reports"/>
 
     <property name="output.code" value="${path.to.output}/code"/>
@@ -45,7 +45,7 @@ limitations under the License.
     <!-- Library files -->
 
     <path id="junit.files">
-        <fileset dir="${path.to.test}/lib" includes="*.jar"/>
+        <fileset dir="${path.to.lib}" includes="*.jar"/>
     </path>
 
     <path id="compiled.files">
@@ -250,7 +250,7 @@ limitations under the License.
         <echo level="info" message="Began - Copying ${product.name} source code"/>
         <echo/>
         <copy todir="${build.source.code}">
-            <fileset dir="${path.to.src}/java"/>
+            <fileset dir="${path.to.src}"/>
             <filterchain>
                 <replacetokens>
                     <token key="BUILD_TIMESTAMP" value="${IMPL_VERSION}"/>
@@ -258,12 +258,6 @@ limitations under the License.
                     <token key="COMPANY_LINK" value="${company.link}"/>
                     <token key="PRODUCT_NAME" value="${product.name}"/>
                     <token key="PRODUCT_VERSION" value="${product.version}"/>
-                    <token key="ERROR_PERMITTED_ARRAY" value="${error.permitted.array}"/>
-                    <token key="ERROR_PERMITTED_BOOLEAN" value="${error.permitted.boolean}"/>
-                    <token key="ERROR_PERMITTED_FUNCTION" value="${error.permitted.function}"/>
-                    <token key="ERROR_PERMITTED_NUMBER" value="${error.permitted.number}"/>
-                    <token key="ERROR_PERMITTED_OBJECT" value="${error.permitted.object}"/>
-                    <token key="ERROR_PERMITTED_STRING" value="${error.permitted.string}"/>
                 </replacetokens>
             </filterchain>
         </copy>
@@ -274,7 +268,7 @@ limitations under the License.
         <echo level="info" message="Began - Copying ${product.name} test code"/>
         <echo/>
         <copy todir="${build.test.code}">
-            <fileset dir="${path.to.test}/java"/>
+            <fileset dir="${path.to.test}"/>
         </copy>
         <echo/>
         <echo level="info" message="Ended - Copying ${product.name} test code"/>

@@ -87,7 +87,9 @@ limitations under the License.
                         </goals>
                         <configuration>
                             <target>
-                                <copy todir="test/lib">
+                                <delete dir="lib"/>
+                                <mkdir dir="lib"/>
+                                <copy todir="lib">
                                     <fileset file="${org.hamcrest:hamcrest-core:jar}"/>
                                     <fileset file="${junit:junit:jar}"/>
                                 </copy>
