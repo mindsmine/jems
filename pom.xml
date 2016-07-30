@@ -144,7 +144,7 @@ limitations under the License.
                         </goals>
                         <configuration>
                             <target>
-                                <echo level="info" message="Began - Creating necessary folders"/>
+                                <echo level="info" message="Began - Initialisation of ${project.name}"/>
                                 <echo/>
                                 <mkdir dir="${build.source.code}"/>
                                 <mkdir dir="${build.source.compiled}"/>
@@ -152,21 +152,6 @@ limitations under the License.
                                 <mkdir dir="${build.test.compiled}"/>
                                 <mkdir dir="${build.test.lib}"/>
                                 <mkdir dir="${build.test.reports}"/>
-                                <echo/>
-                                <echo level="info" message="Ended - Creating necessary folders"/>
-                                <echo/>
-                                <echo/>
-                                <echo/>
-                                <echo level="info" message="Began - Initialisation of ${project.name}"/>
-                                <echo/>
-                                <echo level="info" message="BLAH Project Name : ${project.name}"/>
-                                <echo level="info" message="BLAH Project Version : ${project.version}"/>
-                                <echo level="info" message="BLAH Product Filename : ${output.file}"/>
-                                <echo level="info" message="BLAH Build Timestamp : ${maven.build.timestamp}"/>
-                                <echo level="info" message="BLAH Company Link : ${project.url}"/>
-                                <echo level="info" message="BLAH Project Name : ${project.name}"/>
-                                <echo level="info" message="BLAH Project Name : ${project.name}"/>
-                                <echo level="info" message="BLAH Project Name : ${project.name}"/>
                                 <echo/>
                                 <echo level="info" message="Ended - Initialisation of ${project.name}"/>
                             </target>
