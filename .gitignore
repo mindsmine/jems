@@ -1,3 +1,11 @@
+build
+output
+target
+
+#
+# Originally from github
+# ----------------------
+
 *.class
 
 # Mobile Tools for Java (J2ME)
