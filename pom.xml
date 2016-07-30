@@ -91,7 +91,8 @@ limitations under the License.
 
         <output.code>${path.to.output}/code</output.code>
         <output.file>${project.organization.name}-${project.name}-${project.version}.jar</output.file>
-        <output.docs>${path.to.output}/docs/${project.organization.name}/jems/${project.version}</output.docs>
+        
+        <output.docs>${path.to.output}/docs/${project.organization.name}/${project.artifactId}/${project.version}</output.docs>
     </properties>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
