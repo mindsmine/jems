@@ -39,6 +39,7 @@ limitations under the License.
         <url>http://mindsmine.shaiksphere.com</url>
     </organization>
     <name>JEMS</name>
+    <description>Shaiksphere Inc.</description>
     <url>http://www.shaiksphere.com</url>
 
     <prerequisites>
@@ -69,8 +70,6 @@ limitations under the License.
         <build.compiler>extJavac</build.compiler>
 
         <!-- Local Properties -->
-        <product.filename>${project.organization.name}-${project.name}-${project.version}.jar</product.filename>
-
         <path.to.lib>lib</path.to.lib>
 
         <path.to.src>src</path.to.src>
@@ -92,6 +91,7 @@ limitations under the License.
         <build.test.reports>${path.to.build}/test/reports</build.test.reports>
 
         <output.code>${path.to.output}/code</output.code>
+        <output.file>${project.organization.name}-${project.name}-${project.version}.jar</output.file>
         <output.docs>${path.to.output}/docs/${project.organization.name}/jems/${project.version}</output.docs>
     </properties>
 
@@ -167,7 +167,7 @@ limitations under the License.
                                 <echo/>
                                 <echo level="info" message="BLAH Project Name : ${project.name}"/>
                                 <echo level="info" message="BLAH Project Version : ${project.version}"/>
-                                <echo level="info" message="BLAH Product Filename : ${product.filename}"/>
+                                <echo level="info" message="BLAH Product Filename : ${output.file}"/>
                                 <echo level="info" message="BLAH Build Timestamp : ${maven.build.timestamp}"/>
                                 <echo level="info" message="BLAH Company Link : ${project.url}"/>
                                 <echo level="info" message="BLAH Project Name : ${project.name}"/>
@@ -323,6 +323,35 @@ limitations under the License.
                                 <mkdir dir="${output.code}"/>
                                 <echo/>
                                 <echo level="info" message="Ended - Preparing to package ${project.name}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo level="info" message="Began - Generating ${output.file}"/>
+                                <echo/>
+                                <jar destfile="${output.code}/${output.file}"
+                                     basedir="${build.source.compiled}"
+                                     includes="**/*.class"
+                                     compress="true">
+                                    <manifest>
+                                        <attribute name="Built-By" value="${project.description}"/>
+                                        <attribute name="Implementation-Title" value="${project.name}"/>
+                                        <attribute name="Implementation-Version" value="${maven.build.timestamp}"/>
+                                        <attribute name="Implementation-Vendor" value="${project.description}"/>
+                                        <attribute name="Specification-Title" value="${project.name}"/>
+                                        <attribute name="Specification-Version" value="${maven.build.timestamp}"/>
+                                        <attribute name="Specification-Vendor" value="${project.description}"/>
+                                    </manifest>
+                                </jar>
+                                <echo/>
+                                <echo level="info" message="Ended - Generating ${output.file}"/>
                             </target>
                         </configuration>
                     </execution>
