@@ -109,8 +109,13 @@ limitations under the License.
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.ant</groupId>
-                        <artifactId>ant</artifactId>
-                        <version>1.9.6</version>
+                        <artifactId>ant-junit</artifactId>
+                        <version>1.9.7</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-junit4</artifactId>
+                        <version>1.9.7</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -256,10 +261,6 @@ limitations under the License.
                         </goals>
                         <configuration>
                             <target>
-                                <path id="junit.files">
-                                    <fileset dir="${path.to.lib}" includes="*.jar"/>
-                                </path>
-                                <echo/>
                                 <echo level="info" message="Began - Compiling ${project.name} test code"/>
                                 <echo/>
                                 <javac debug="on"
@@ -268,8 +269,8 @@ limitations under the License.
                                        nowarn="${compile.noWarn}"
                                        includeantruntime="false"
                                        destdir="${build.test.compiled}">
-                                    <classpath refid="junit.files"/>
                                     <classpath>
+                                        <fileset dir="${path.to.lib}" includes="*.jar"/>
                                         <pathelement location="${build.source.compiled}"/>
                                     </classpath>
                                     <compilerarg value="${compile.args}"/>
@@ -278,6 +279,34 @@ limitations under the License.
                                 </javac>
                                 <echo/>
                                 <echo level="info" message="Ended - Compiling ${project.name} test code"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo level="info" message="Began - Testing ${project.name} code"/>
+                                <echo/>
+                                <junit printsummary="yes" haltonfailure="yes">
+                                    <formatter type="plain"/>
+                                    <classpath>
+                                        <fileset dir="${path.to.lib}" includes="*.jar"/>
+                                        <pathelement location="${build.source.compiled}"/>
+                                        <pathelement location="${build.test.compiled}"/>
+                                    </classpath>
+                                    <batchtest fork="yes" todir="${build.test.reports}">
+                                        <fileset dir="${build.test.code}">
+                                            <include name="**/*Test*.java"/>
+                                        </fileset>
+                                    </batchtest>
+                                </junit>
+                                <echo/>
+                                <echo level="info" message="Ended - Testing ${project.name} code"/>
                             </target>
                         </configuration>
                     </execution>
