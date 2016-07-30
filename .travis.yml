@@ -5,6 +5,8 @@ script: mvn clean package
 jdk:
   - oraclejdk8
 
+sudo: false
+
 notifications:
   email:
-  - me@shaiksphere.com
+  - false
