@@ -70,8 +70,6 @@ limitations under the License.
         <build.compiler>extJavac</build.compiler>
 
         <!-- Local Properties -->
-        <path.to.lib>lib</path.to.lib>
-
         <path.to.src>src</path.to.src>
         <path.to.test>test</path.to.test>
 
@@ -88,6 +86,7 @@ limitations under the License.
 
         <build.test.code>${path.to.build}/test/code</build.test.code>
         <build.test.compiled>${path.to.build}/test/compiled</build.test.compiled>
+        <build.test.lib>${path.to.build}/test/lib</build.test.lib>
         <build.test.reports>${path.to.build}/test/reports</build.test.reports>
 
         <output.code>${path.to.output}/code</output.code>
@@ -129,6 +128,7 @@ limitations under the License.
                             <target>
                                 <echo level="info" message="Began - Cleaning ${project.name}"/>
                                 <echo/>
+                                <delete dir="${build.test.lib}"/>
                                 <delete dir="${path.to.build}"/>
                                 <delete dir="${path.to.output}"/>
                                 <echo/>
@@ -144,19 +144,13 @@ limitations under the License.
                         </goals>
                         <configuration>
                             <target>
-                                <delete dir="${path.to.lib}"/>
-                                <mkdir dir="${path.to.lib}"/>
-                                <copy todir="${path.to.lib}">
-                                    <fileset file="${org.hamcrest:hamcrest-core:jar}"/>
-                                    <fileset file="${junit:junit:jar}"/>
-                                </copy>
-                                <echo/>
                                 <echo level="info" message="Began - Creating necessary folders"/>
                                 <echo/>
                                 <mkdir dir="${build.source.code}"/>
                                 <mkdir dir="${build.source.compiled}"/>
                                 <mkdir dir="${build.test.code}"/>
                                 <mkdir dir="${build.test.compiled}"/>
+                                <mkdir dir="${build.test.lib}"/>
                                 <mkdir dir="${build.test.reports}"/>
                                 <echo/>
                                 <echo level="info" message="Ended - Creating necessary folders"/>
@@ -254,6 +248,21 @@ limitations under the License.
                         </configuration>
                     </execution>
                     <execution>
+                        <id>process-test-resources</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy todir="${build.test.lib}">
+                                    <fileset file="${org.hamcrest:hamcrest-core:jar}"/>
+                                    <fileset file="${junit:junit:jar}"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>test-compile</id>
                         <phase>test-compile</phase>
                         <goals>
@@ -270,7 +279,7 @@ limitations under the License.
                                        includeantruntime="false"
                                        destdir="${build.test.compiled}">
                                     <classpath>
-                                        <fileset dir="${path.to.lib}" includes="*.jar"/>
+                                        <fileset dir="${build.test.lib}" includes="*.jar"/>
                                         <pathelement location="${build.source.compiled}"/>
                                     </classpath>
                                     <compilerarg value="${compile.args}"/>
@@ -295,7 +304,7 @@ limitations under the License.
                                 <junit printsummary="yes" haltonfailure="yes">
                                     <formatter type="plain"/>
                                     <classpath>
-                                        <fileset dir="${path.to.lib}" includes="*.jar"/>
+                                        <fileset dir="${build.test.lib}" includes="*.jar"/>
                                         <pathelement location="${build.source.compiled}"/>
                                         <pathelement location="${build.test.compiled}"/>
                                     </classpath>
