@@ -64,8 +64,11 @@ limitations under the License.
     <!-- Properties -->
 
     <properties>
+        <!-- Environment Properties -->
         <maven.build.timestamp.format>yyyyMMdd.HHmmss</maven.build.timestamp.format>
+        <build.compiler>extJavac</build.compiler>
 
+        <!-- Local Properties -->
         <product.filename>${project.organization.name}-${project.name}-${project.version}.jar</product.filename>
 
         <path.to.lib>lib</path.to.lib>
@@ -201,6 +204,33 @@ limitations under the License.
                         </configuration>
                     </execution>
                     <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo level="info" message="Began - Compiling ${project.name} source code"/>
+                                <echo/>
+                                <javac debug="on"
+                                       debuglevel="${compile.debugLevel}"
+                                       deprecation="${compile.deprecation}"
+                                       nowarn="${compile.noWarn}"
+                                       includeantruntime="false"
+                                       destdir="${build.source.compiled}">
+                                    <compilerarg value="${compile.args}"/>
+                                    <exclude name="**/package-info.java"/>
+                                    <src location="${build.source.code}"/>
+                                </javac>
+                                <echo/>
+                                <echo level="info" message="Ended - Compiling ${project.name} source code"/>
+                                <echo/>
+                                <echo/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>generate-test-sources</id>
                         <phase>generate-test-sources</phase>
                         <goals>
@@ -215,6 +245,39 @@ limitations under the License.
                                 </copy>
                                 <echo/>
                                 <echo level="info" message="Ended - Copying ${project.name} test code"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <path id="junit.files">
+                                    <fileset dir="${path.to.lib}" includes="*.jar"/>
+                                </path>
+                                <echo/>
+                                <echo level="info" message="Began - Compiling ${project.name} test code"/>
+                                <echo/>
+                                <javac debug="on"
+                                       debuglevel="${compile.debugLevel}"
+                                       deprecation="${compile.deprecation}"
+                                       nowarn="${compile.noWarn}"
+                                       includeantruntime="false"
+                                       destdir="${build.test.compiled}">
+                                    <classpath refid="junit.files"/>
+                                    <classpath>
+                                        <pathelement location="${build.source.compiled}"/>
+                                    </classpath>
+                                    <compilerarg value="${compile.args}"/>
+                                    <exclude name="**/package-info.java"/>
+                                    <src location="${build.test.code}"/>
+                                </javac>
+                                <echo/>
+                                <echo level="info" message="Ended - Compiling ${project.name} test code"/>
                             </target>
                         </configuration>
                     </execution>
