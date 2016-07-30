@@ -29,22 +29,53 @@ limitations under the License.
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- Dependencies -->
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- Properties -->
+
+    <properties>
+        <!-- Core Values -->
+        <company.name>Shaiksphere Inc.</company.name>
+        <!--<company.link><a target='_blank' href='http://www.shaiksphere.com'>Shaiksphere</a></company.link>-->
+        <division.name>mindsmine</division.name>
+
+        <product.name>${division.name} JEMS</product.name>
+        <product.version>develop</product.version>
+        <product.filename>${division.name}-JEMS-${product.version}.jar</product.filename>
+        <product.folder>jems</product.folder>
+
+        <path.to.lib>lib</path.to.lib>
+
+        <path.to.src>src</path.to.src>
+        <path.to.test>test</path.to.test>
+
+        <path.to.build>build</path.to.build>
+        <path.to.output>output</path.to.output>
+
+        <compile.debugLevel>lines,vars,source</compile.debugLevel>
+        <compile.noWarn>off</compile.noWarn>
+        <compile.deprecation>on</compile.deprecation>
+        <compile.args>-Xlint:unchecked</compile.args>
+
+        <build.source.code>${path.to.build}/source/code</build.source.code>
+        <build.source.compiled>${path.to.build}/source/compiled</build.source.compiled>
+
+        <build.test.code>${path.to.build}/test/code</build.test.code>
+        <build.test.compiled>${path.to.build}/test/compiled</build.test.compiled>
+        <build.test.reports>${path.to.build}/test/reports</build.test.reports>
+
+        <property name="output.code" value="${path.to.output}/code"/>
+        <property name="output.docs" value="${path.to.output}/docs/${division.name}/${product.folder}/${product.version}"/>
+    </properties>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -73,12 +104,104 @@ limitations under the License.
                         </goals>
                         <configuration>
                             <target>
-                                <delete includeemptydirs="true">
-                                    <fileset dir="test/lib" includes="**/*"/>
-                                </delete>
+                                <echo level="info" message="Began - Cleaning ${product.name}"/>
+                                <echo/>
+                                <delete dir="${path.to.build}"/>
+                                <delete dir="${path.to.output}"/>
+                                <echo/>
+                                <echo level="info" message="Ended - Cleaning ${product.name}"/>
                             </target>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>initialize-jems</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <delete dir="${path.to.lib}"/>
+                                <mkdir dir="${path.to.lib}"/>
+                                <copy todir="${path.to.lib}">
+                                    <fileset file="${org.hamcrest:hamcrest-core:jar}"/>
+                                    <fileset file="${junit:junit:jar}"/>
+                                </copy>
+                                <echo/>
+                                <echo level="info" message="Began - Initialisation of ${product.name}"/>
+                                <echo/>
+                                <tstamp>
+                                    <format property="IMPL_YEAR" pattern="yyyy"/>
+                                </tstamp>
+                                <property name="IMPL_VERSION" value="${DSTAMP}.${TSTAMP}"/>
+                                <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+                                <echo level="info" message="Impl Year    : ${IMPL_YEAR}"/>
+                                <echo level="info" message="Debug Level  : ${compile.debugLevel}"/>
+                                <echo level="info" message="No Warn      : ${compile.noWarn} "/>
+                                <echo level="info" message="Deprecation  : ${compile.deprecation}"/>
+                                <echo level="info" message="Compiler Args: ${compile.args}"/>
+                                <echo/>
+                                <echo level="info" message="Ended - Initialisation of ${product.name}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>process-sources-jems</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo level="info" message="Began - Preparing to compile ${product.name}"/>
+                                <echo/>
+                                <echo level="info" message="Began - Creating necessary folders"/>
+                                <echo/>
+                                <mkdir dir="${build.source.code}"/>
+                                <mkdir dir="${build.source.compiled}"/>
+                                <mkdir dir="${build.test.code}"/>
+                                <mkdir dir="${build.test.compiled}"/>
+                                <mkdir dir="${build.test.reports}"/>
+                                <echo/>
+                                <echo level="info" message="Ended - Creating necessary folders"/>
+                                <echo/>
+                                <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+                                <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+                                <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+                                <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+                                <echo level="info" message="Impl Version : ${IMPL_VERSION}"/>
+                                <echo/>
+                                <echo level="info" message="Began - Copying ${product.name} source code"/>
+                                <echo/>
+                                <copy todir="${build.source.code}">
+                                    <fileset dir="${path.to.src}"/>
+                                    <filterchain>
+                                        <replacetokens>
+                                            <token key="BUILD_TIMESTAMP" value="${IMPL_VERSION}"/>
+                                            <token key="BUILD_YEAR" value="${IMPL_YEAR}"/>
+                                            <token key="COMPANY_LINK" value="${company.link}"/>
+                                            <token key="PRODUCT_NAME" value="${product.name}"/>
+                                            <token key="PRODUCT_VERSION" value="${product.version}"/>
+                                        </replacetokens>
+                                    </filterchain>
+                                </copy>
+                                <echo/>
+                                <echo level="info" message="Ended - Copying ${product.name} source code"/>
+                                <echo/>
+                                <echo/>
+                                <echo level="info" message="Began - Copying ${product.name} test code"/>
+                                <echo/>
+                                <copy todir="${build.test.code}">
+                                    <fileset dir="${path.to.test}"/>
+                                </copy>
+                                <echo/>
+                                <echo level="info" message="Ended - Copying ${product.name} test code"/>
+                                <echo/>
+                                <echo level="info" message="Ended - Preparing to compile ${product.name}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <!--
                     <execution>
                         <id>process-resources-jems</id>
                         <phase>process-resources</phase>
@@ -96,41 +219,9 @@ limitations under the License.
                             </target>
                         </configuration>
                     </execution>
+                    -->
                 </executions>
             </plugin>
         </plugins>
     </build>
-
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-    <profiles>
-
-        <!-- ++++++++++++++++++++++++++++++++++++++ -->
-        <!-- ++++++++++++++++++++++++++++++++++++++ -->
-        <!-- Development Mode Profile -->
-
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <pomBuildMode>develop</pomBuildMode>
-            </properties>
-        </profile>
-
-        <!-- ++++++++++++++++++++++++++++++++++++++ -->
-        <!-- ++++++++++++++++++++++++++++++++++++++ -->
-        <!-- GoBuild Profile -->
-
-        <profile>
-            <id>build</id>
-            <properties>
-                <pomBuildMode>prod</pomBuildMode>
-            </properties>
-        </profile>
-    </profiles>
-
 </project>
