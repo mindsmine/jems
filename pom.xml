@@ -26,7 +26,7 @@ limitations under the License.
 
     <groupId>com.shaiksphere.mindsmine.jems</groupId>
     <artifactId>jems</artifactId>
-    <version>1.2</version>
+    <version>2016.2</version>
     <packaging>pom</packaging>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -43,7 +43,7 @@ limitations under the License.
     <url>http://www.shaiksphere.com</url>
 
     <prerequisites>
-        <maven>3.3.3</maven>
+        <maven>3.3.9</maven>
     </prerequisites>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -74,7 +74,9 @@ limitations under the License.
         <path.to.test>test</path.to.test>
 
         <path.to.build>build</path.to.build>
-        <path.to.output>output</path.to.output>
+
+        <path.to.dist>dist</path.to.dist>
+        <path.to.docs>docs</path.to.docs>
 
         <compile.debugLevel>lines,vars,source</compile.debugLevel>
         <compile.noWarn>off</compile.noWarn>
@@ -89,9 +91,10 @@ limitations under the License.
         <build.test.lib>${path.to.build}/test/lib</build.test.lib>
         <build.test.reports>${path.to.build}/test/reports</build.test.reports>
 
-        <output.code>${path.to.output}/code</output.code>
+        <output.code>${path.to.dist}</output.code>
         <output.file>${project.organization.name}-${project.name}-${project.version}.jar</output.file>
-        <output.docs>${path.to.output}/docs/${project.organization.name}/${project.artifactId}/${project.version}</output.docs>
+
+        <output.docs>${path.to.docs}/${project.organization.name}/${project.artifactId}/${project.version}</output.docs>
     </properties>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -129,7 +132,7 @@ limitations under the License.
                                 <echo level="info" message="Began - Cleaning ${project.name}"/>
                                 <echo/>
                                 <delete dir="${path.to.build}"/>
-                                <delete dir="${path.to.output}"/>
+                                <delete dir="${path.to.dist}"/>
                                 <echo/>
                                 <echo level="info" message="Ended - Cleaning ${project.name}"/>
                             </target>
@@ -196,6 +199,7 @@ limitations under the License.
                             <target>
                                 <echo level="info" message="Began - Preparing to document ${project.name}"/>
                                 <echo/>
+                                <delete dir="${output.docs}"/>
                                 <mkdir dir="${output.docs}"/>
                                 <echo/>
                                 <echo level="info" message="Ended - Preparing to document ${project.name}"/>
