@@ -30,7 +30,7 @@ package com.shaiksphere.mindsmine.jems.units;
  *
  * @author Mohammed Shaik Hussain Ali
  *
- * @since 1.2
+ * @since 2016.2
  *
  */
 public enum MemoryUnit {
@@ -46,7 +46,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Kibibyte">Kibibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     KIBI_BYTE(1),
@@ -60,7 +60,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Mebibyte">Mebibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     MEBI_BYTE(2),
@@ -74,7 +74,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Gibibyte">Gibibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     GIBI_BYTE(3),
@@ -88,7 +88,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Tebibyte">Tebibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     TEBI_BYTE(4),
@@ -102,7 +102,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Pebibyte">Pebibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     PEBI_BYTE(5),
@@ -116,7 +116,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Exbibyte">Exbibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     EXBI_BYTE(6),
@@ -130,7 +130,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Zebibyte">Zebibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     ZEBI_BYTE(7),
@@ -144,7 +144,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Yobibyte">Yobibyte (Wikipedia)</a>
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     YOBI_BYTE(8);
@@ -168,7 +168,7 @@ public enum MemoryUnit {
      *
      * @return Number of bytes in the unit.
      *
-     * @since 1.2
+     * @since 2016.2
      *
      */
     public double getByteValue() {
