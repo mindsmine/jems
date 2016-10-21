@@ -18,8 +18,6 @@ package com.shaiksphere.mindsmine.jems.units;
 
 import org.junit.Test;
 
-import java.text.DecimalFormat;
-
 import static org.junit.Assert.assertEquals;
 
 public class MemoryUnitTest {
@@ -170,6 +168,8 @@ public class MemoryUnitTest {
 
     @Test
     public void extractRandomTest() {
+        assertEquals(MemoryUnit.KIBI_BYTE, MemoryUnit.extract(0));
+        assertEquals(MemoryUnit.KIBI_BYTE, MemoryUnit.extract(1023));
         assertEquals(MemoryUnit.YOBI_BYTE, MemoryUnit.extract(RANDOM));
     }
 }
