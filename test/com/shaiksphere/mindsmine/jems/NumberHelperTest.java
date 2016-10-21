@@ -44,4 +44,15 @@ public class NumberHelperTest {
         assertEquals(Long.valueOf(2L), NumberHelper.getNullSafe(var3));
     }
 
+    @Test
+    public void getFloatNullSafeTest() {
+        Float var1 = null;
+        Float var2 = 2.0f;
+        float var3 = 2.0f;
+
+        assertEquals(Float.MIN_VALUE, NumberHelper.getNullSafe(var1), 0.0f);
+        assertEquals(2.0f, NumberHelper.getNullSafe(var2), 0.0f);
+        assertEquals(2.0f, NumberHelper.getNullSafe(var3), 0.0f);
+    }
+
 }

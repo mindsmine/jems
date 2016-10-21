@@ -88,4 +88,34 @@ public final class NumberHelper {
     public static Long getNullSafe(Long value) {
         return (value == null) ? Long.MIN_VALUE : value;
     }
+
+    /**
+     * Returns a non-null float, even if the object being passed is a null float.
+     * <br><br>
+     * If the passed-in object is a non-null float, then it is returned as-is.
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      Float num1 = 10;
+     *      Float num2 = null;
+     *
+     *      Float num3 = NumberHelper.getNullSafe(num1);
+     *
+     *      Float num4 = NumberHelper.getNullSafe(num2);
+     *
+     *      // num3 now contains the number: 10
+     *      // num4 now contains the number: 2^-149
+     * </pre>
+     *
+     * @param value The number to safeguard against <code>null</code>.
+     *
+     * @return If value is <code>null</code> then {@link Float#MIN_VALUE}.
+     *
+     * @since 2.0.0
+     *
+     */
+    public static Float getNullSafe(Float value) {
+        return (value == null) ? Float.MIN_VALUE : value;
+    }
+
 }
