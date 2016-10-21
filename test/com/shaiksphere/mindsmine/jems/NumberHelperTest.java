@@ -55,4 +55,14 @@ public class NumberHelperTest {
         assertEquals(2.0f, NumberHelper.getNullSafe(var3), 0.0f);
     }
 
+    @Test
+    public void getIntegerNullSafeTest() {
+        Integer var1 = null;
+        Integer var2 = 2;
+        int var3 = 2;
+
+        assertEquals(Integer.valueOf(Integer.MIN_VALUE), NumberHelper.getNullSafe(var1));
+        assertEquals(Integer.valueOf(2), NumberHelper.getNullSafe(var2));
+        assertEquals(Integer.valueOf(2), NumberHelper.getNullSafe(var3));
+    }
 }

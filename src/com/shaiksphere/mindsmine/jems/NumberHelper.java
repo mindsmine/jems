@@ -118,4 +118,32 @@ public final class NumberHelper {
         return (value == null) ? Float.MIN_VALUE : value;
     }
 
+    /**
+     * Returns a non-null integer, even if the object being passed is a null integer.
+     * <br><br>
+     * If the passed-in object is a non-null integer, then it is returned as-is.
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      Integer num1 = 10;
+     *      Integer num2 = null;
+     *
+     *      Integer num3 = NumberHelper.getNullSafe(num1);
+     *
+     *      Integer num4 = NumberHelper.getNullSafe(num2);
+     *
+     *      // num3 now contains the number: 10
+     *      // num4 now contains the number: -2^31
+     * </pre>
+     *
+     * @param value The number to safeguard against <code>null</code>.
+     *
+     * @return If value is <code>null</code> then {@link Integer#MIN_VALUE}.
+     *
+     * @since 1.0
+     *
+     */
+    public static Integer getNullSafe(Integer value) {
+        return (value == null) ? Integer.MIN_VALUE : value;
+    }
 }
