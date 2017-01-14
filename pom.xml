@@ -133,6 +133,7 @@ limitations under the License.
                                 <echo/>
                                 <delete dir="${path.to.build}"/>
                                 <delete dir="${path.to.dist}"/>
+                                <delete dir="${path.to.docs}"/>
                                 <echo/>
                                 <echo level="info" message="Ended - Cleaning ${project.name}"/>
                             </target>
