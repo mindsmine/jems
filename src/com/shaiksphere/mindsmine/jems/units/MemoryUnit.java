@@ -30,13 +30,10 @@ package com.shaiksphere.mindsmine.jems.units;
  *
  * @author Mohammed Shaik Hussain Ali
  *
- * @since 2016.2
+ * @since 2.0.0
  *
  */
 public enum MemoryUnit {
-//    BYTE(0),
-
-
     /**
      * The <strong>kibibyte</strong> is a multiple of the unit byte for digital information. It is a member of the set
      * of units with binary prefixes defined by the International Electrotechnical Commission (IEC). Its unit symbol is
@@ -46,7 +43,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Kibibyte">Kibibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     KIBI_BYTE(1),
@@ -60,7 +57,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Mebibyte">Mebibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     MEBI_BYTE(2),
@@ -74,7 +71,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Gibibyte">Gibibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     GIBI_BYTE(3),
@@ -88,7 +85,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Tebibyte">Tebibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     TEBI_BYTE(4),
@@ -102,7 +99,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Pebibyte">Pebibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     PEBI_BYTE(5),
@@ -116,7 +113,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Exbibyte">Exbibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     EXBI_BYTE(6),
@@ -130,7 +127,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Zebibyte">Zebibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     ZEBI_BYTE(7),
@@ -144,7 +141,7 @@ public enum MemoryUnit {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Yobibyte">Yobibyte (Wikipedia)</a>
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     YOBI_BYTE(8);
@@ -168,13 +165,27 @@ public enum MemoryUnit {
      *
      * @return Number of bytes in the unit.
      *
-     * @since 2016.2
+     * @since 2.0.0
      *
      */
     public double getByteValue() {
         return byteValue;
     }
 
+    /**
+     * Extracts the closest equivalent in Bytes.
+     * <br><br>
+     * <strong>Note</strong>: The smallest unit returned is {@link MemoryUnit#KIBI_BYTE}
+     *
+     * @param value for which the byte equivalent is to be extracted
+     *
+     * @return Closest byte equivalent of the provided number
+     *
+     * @throws IllegalArgumentException when a negative number is passed
+     *
+     * @since 2.0.0
+     *
+     */
     public static MemoryUnit extract(double value) {
         if (value < 0) {
             throw new IllegalArgumentException("Negative number is not allowed as an argument.");
