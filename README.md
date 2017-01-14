@@ -1,6 +1,6 @@
 # mindsmine-jems #
 
-### Java Extended MethodS ###
+## Java Extended MethodS ##
 
 [![Build Status](https://travis-ci.org/mindsmine/mindsmine-jems.svg?branch=master)](https://travis-ci.org/mindsmine/mindsmine-jems)
 
@@ -10,7 +10,7 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ---
 
-##### Releases #####
+### Releases ###
 
 **2.0.0**
 * Unit representation
