@@ -13,7 +13,8 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 ### Releases ###
 
 **2.0.0**
-* Unit representation
+* Added unit representation
+* Removed multiple classes and consolidated into a single class (e.g., `Number`)
 * Java 8 compliant
 
 **1.0**
