@@ -40,10 +40,49 @@ public class StringHelperTest {
     }
 
     @Test
+    public void areEqualLenientTest() {
+        assertTrue(StringHelper.areEqual(null, null, true));
+        assertTrue(StringHelper.areEqual(null, "", true));
+        assertTrue(StringHelper.areEqual("", null, true));
+
+        assertTrue(StringHelper.areEqual("", "", true));
+
+        assertTrue(StringHelper.areEqual("   ", "", true));
+        assertTrue(StringHelper.areEqual(" abc", "abc ", true));
+
+        assertFalse(StringHelper.areEqual("", "abc", true));
+        assertFalse(StringHelper.areEqual("ab c", "abc", true));
+
+        assertTrue(StringHelper.areEqual("ABC", "abc", true));
+        assertTrue(StringHelper.areEqual("abc", "abc", true));
+    }
+
+    @Test
+    public void areEqualStrictTest() {
+        assertFalse(StringHelper.areEqual(null, null, false));
+        assertFalse(StringHelper.areEqual(null, "", false));
+        assertFalse(StringHelper.areEqual("", null, false));
+
+        assertTrue(StringHelper.areEqual("", "", false));
+
+        assertFalse(StringHelper.areEqual("   ", "", false));
+        assertFalse(StringHelper.areEqual(" abc", "abc ", false));
+
+        assertFalse(StringHelper.areEqual("", "abc", false));
+        assertFalse(StringHelper.areEqual("ab c", "abc", false));
+
+        assertFalse(StringHelper.areEqual("ABC", "abc", false));
+        assertTrue(StringHelper.areEqual("abc", "abc", true));
+    }
+
+    @Test
     public void areEqualTest() {
         assertTrue(StringHelper.areEqual(null, null));
         assertTrue(StringHelper.areEqual(null, ""));
+        assertTrue(StringHelper.areEqual("", null));
+
         assertTrue(StringHelper.areEqual("", ""));
+
         assertTrue(StringHelper.areEqual("   ", ""));
         assertTrue(StringHelper.areEqual(" abc", "abc "));
 
@@ -51,6 +90,7 @@ public class StringHelperTest {
         assertFalse(StringHelper.areEqual("ab c", "abc"));
 
         assertTrue(StringHelper.areEqual("ABC", "abc"));
+        assertTrue(StringHelper.areEqual("abc", "abc"));
     }
 
     @Test

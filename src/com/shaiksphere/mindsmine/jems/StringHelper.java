@@ -101,27 +101,11 @@ public final class StringHelper {
     }
 
     /**
-     * Returns <code>true</code> if the passed values are equal, ignoring the case, false
-     * otherwise.
+     * Returns <code>true</code> if the passed values are equal, ignoring the case, false otherwise.
      * <br><br>
-     * Two strings are considered equal if,
-     * <ul>
-     *     <li>Both strings are blank, as defined by {@link StringHelper#isBlank(String)}.</li>
-     *     <li>Trimmed versions of both strings, as defined by {@link String#trim()}, are equal.</li>
-     * </ul>
+     * Convenience method equivalent to <code>StringHelper.areEqual(string1, string2, true)</code>
      *
-     * <pre>
-     *     StringHelper.areEqual(null, null)      = true
-     *     StringHelper.areEqual(null, "")        = true
-     *     StringHelper.areEqual("", "")          = true
-     *     StringHelper.areEqual("   ", "")       = true
-     *     StringHelper.areEqual(" abc", "abc ")  = true
-     *     StringHelper.areEqual("", "abc")       = false
-     *     StringHelper.areEqual("ab c", "abc")   = false
-     *     StringHelper.areEqual("ABC", "abc")    = true
-     * </pre>
-     *
-     * @see java.lang.String#equalsIgnoreCase(String)
+     * @see StringHelper#areEqual(String, String, boolean)
      *
      * @param string1 to compare
      * @param string2 to compare
@@ -132,10 +116,73 @@ public final class StringHelper {
      *
      */
     public static boolean areEqual(String string1, String string2) {
-        return  isBlank(string1) &&
-                isBlank(string2) ||
-                !(isBlank(string1) || isBlank(string2)) &&
-                        string1.trim().equalsIgnoreCase(string2.trim());
+        return areEqual(string1, string2, true);
+    }
+
+    /**
+     * Returns <code>true</code> if the passed values are equal, false otherwise.
+     * <br><br>
+     * When the lenient flag is set to <code>true</code>, the comparison will ignore the case and trim the strings
+     * before comparing; the two strings are considered equal if,
+     * <ul>
+     *     <li>Both strings are blank, as defined by {@link StringHelper#isBlank(String)}.</li>
+     *     <li>Trimmed versions of both strings, as defined by {@link String#trim()}, are equal.</li>
+     * </ul>
+     *
+     * <pre>
+     *     StringHelper.areEqual(null, null, true)       = true
+     *     StringHelper.areEqual(null, "", true)         = true
+     *     StringHelper.areEqual("", null, true)         = true
+     *     StringHelper.areEqual("", "", true)           = true
+     *     StringHelper.areEqual("   ", "", true)        = true
+     *     StringHelper.areEqual(" abc", "abc ", true)   = true
+     *     StringHelper.areEqual("", "abc", true)        = false
+     *     StringHelper.areEqual("ab c", "abc", true)    = false
+     *     StringHelper.areEqual("ABC", "abc", true)     = true
+     *     StringHelper.areEqual("abc", "abc", true)     = true
+     * </pre>
+     *
+     * @see java.lang.String#equalsIgnoreCase(String)
+     *
+     * <br><br>
+     * When the lenient flag is set to <code>false</code>, the two strings are considered equal if,
+     * <ul>
+     *     <li>Both strings are not null</li>
+     *     <li>Both strings represent the same sequence of characters</li>
+     * </ul>
+     *
+     * <pre>
+     *     StringHelper.areEqual(null, null, false)      = false
+     *     StringHelper.areEqual(null, "", false)        = false
+     *     StringHelper.areEqual("", null, false)        = false
+     *     StringHelper.areEqual("", "", false)          = true
+     *     StringHelper.areEqual("   ", "", false)       = false
+     *     StringHelper.areEqual(" abc", "abc ", false)  = false
+     *     StringHelper.areEqual("", "abc", false)       = false
+     *     StringHelper.areEqual("ab c", "abc", false)   = false
+     *     StringHelper.areEqual("ABC", "abc", false)    = false
+     *     StringHelper.areEqual("abc", "abc", false)    = true
+     * </pre>
+     *
+     * @see java.lang.String#equals(Object)
+     *
+     * @param string1 to compare
+     * @param string2 to compare
+     * @param lenient whether to be lenient or not
+     *
+     * @return whether two strings are equal
+     *
+     * @since 2.1.0
+     */
+    public static boolean areEqual(String string1, String string2, boolean lenient) {
+        if (lenient) {
+            return  isBlank(string1) &&
+                    isBlank(string2) ||
+                    !(isBlank(string1) || isBlank(string2)) &&
+                    string1.trim().equalsIgnoreCase(string2.trim());
+        }
+
+        return string1 != null && string1.equals(string2);
     }
 
     /**
