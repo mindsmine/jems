@@ -12,6 +12,10 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**2.1.0**
+* Added palindrome test, with leniency support
+* Added string equality test, with leniency support
+
 **2.0.0**
 * Added unit representation
 * Removed multiple classes and consolidated into a single class (e.g., `Number`)
