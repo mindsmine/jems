@@ -103,4 +103,45 @@ public class StringHelperTest {
 
         assertTrue(StringHelper.isOnlyDigits("17650"));
     }
+
+    @Test
+    public void isPalindromeLenientTest() {
+        assertTrue(StringHelper.isPalindrome(null, true));
+        assertTrue(StringHelper.isPalindrome("", true));
+        assertTrue(StringHelper.isPalindrome("   ", true));
+        assertTrue(StringHelper.isPalindrome(" aba", true));
+        assertTrue(StringHelper.isPalindrome("aba", true));
+        assertTrue(StringHelper.isPalindrome("mAdAm", true));
+        assertTrue(StringHelper.isPalindrome("madAm", true));
+        assertTrue(StringHelper.isPalindrome("madam", true));
+        assertTrue(StringHelper.isPalindrome("Madam", true));
+        assertFalse(StringHelper.isPalindrome("hello", true));
+    }
+
+    @Test
+    public void isPalindromeStrictTest() {
+        assertFalse(StringHelper.isPalindrome(null, false));
+        assertTrue(StringHelper.isPalindrome("", false));
+        assertTrue(StringHelper.isPalindrome("   ", false));
+        assertFalse(StringHelper.isPalindrome(" aba", false));
+        assertTrue(StringHelper.isPalindrome("aba", false));
+        assertTrue(StringHelper.isPalindrome("mAdAm", false));
+        assertFalse(StringHelper.isPalindrome("madAm", false));
+        assertTrue(StringHelper.isPalindrome("madam", false));
+        assertFalse(StringHelper.isPalindrome("Madam", false));
+        assertFalse(StringHelper.isPalindrome("hello", false));
+    }
+    @Test
+    public void isPalindromeTest() {
+        assertTrue(StringHelper.isPalindrome(null));
+        assertTrue(StringHelper.isPalindrome(""));
+        assertTrue(StringHelper.isPalindrome("   "));
+        assertTrue(StringHelper.isPalindrome(" aba"));
+        assertTrue(StringHelper.isPalindrome("aba"));
+        assertTrue(StringHelper.isPalindrome("mAdAm"));
+        assertTrue(StringHelper.isPalindrome("madAm"));
+        assertTrue(StringHelper.isPalindrome("madam"));
+        assertTrue(StringHelper.isPalindrome("Madam"));
+        assertFalse(StringHelper.isPalindrome("hello"));
+    }
 }

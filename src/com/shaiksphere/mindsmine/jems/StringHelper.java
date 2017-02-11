@@ -101,7 +101,7 @@ public final class StringHelper {
     }
 
     /**
-     * Returns <code>true</code> if the passed values are equal, ignoring the case, false otherwise.
+     * Returns <code>true</code> if the passed values are equal, ignoring the case, <code>false</code> otherwise.
      * <br><br>
      * Convenience method equivalent to <code>StringHelper.areEqual(string1, string2, true)</code>
      *
@@ -120,7 +120,7 @@ public final class StringHelper {
     }
 
     /**
-     * Returns <code>true</code> if the passed values are equal, false otherwise.
+     * Returns <code>true</code> if the passed values are equal, <code>false</code> otherwise.
      * <br><br>
      * When the lenient flag is set to <code>true</code>, the comparison will ignore the case and trim the strings
      * before comparing; the two strings are considered equal if,
@@ -208,5 +208,69 @@ public final class StringHelper {
      */
     public static boolean isOnlyDigits(String string) {
         return (!isBlank(string) && string.matches("\\d+"));
+    }
+
+    /**
+     * Returns <code>true</code> if the passed string is a palindrome, ignoring the case, <code>false</code> otherwise.
+     * <br><br>
+     * Convenience method equivalent to <code>StringHelper.isPalindrome(string, true)</code>
+     *
+     * @see StringHelper#isPalindrome(String, boolean)
+     *
+     * @param string to check
+     *
+     * @return if the string is a Palindrome
+     *
+     * @since 2.1.0
+     */
+    public static boolean isPalindrome(String string) {
+        return isPalindrome(string, true);
+    }
+
+    /**
+     * Returns <code>true</code> if the passed string is a palindrome, <code>false</code> otherwise.
+     * <br><br>
+     * A palindrome is a word, phrase, number, or other sequence of characters which reads the same backward or forward,
+     * such as madam or kayak.
+     * <br><br>
+     * Convenience method equivalent to <code>StringHelper.areEqual(string, string.reverse, flag)</code>
+     *
+     * <pre>
+     *     StringHelper.isPalindrome(null, true)      = true
+     *     StringHelper.isPalindrome("", true)        = true
+     *     StringHelper.isPalindrome("   ", true)     = true
+     *     StringHelper.isPalindrome(" aba", true)    = true
+     *     StringHelper.isPalindrome("aba", true)     = true
+     *     StringHelper.isPalindrome("mAdAm", true)   = true
+     *     StringHelper.isPalindrome("madAm", true)   = true
+     *     StringHelper.isPalindrome("madam", true)   = true
+     *     StringHelper.isPalindrome("Madam", true)   = true
+     *     StringHelper.isPalindrome("hello", true)   = false
+     * </pre>
+     * <pre>
+     *     StringHelper.isPalindrome(null, false)     = false
+     *     StringHelper.isPalindrome("", false)       = true
+     *     StringHelper.isPalindrome("   ", false)    = true
+     *     StringHelper.isPalindrome(" aba", false)   = false
+     *     StringHelper.isPalindrome("aba", false)    = true
+     *     StringHelper.isPalindrome("mAdAm", false)  = true
+     *     StringHelper.isPalindrome("madAm", false)  = false
+     *     StringHelper.isPalindrome("madam", false)  = true
+     *     StringHelper.isPalindrome("Madam", false)  = false
+     *     StringHelper.isPalindrome("hello", false)  = false
+     * </pre>
+     *
+     * @see StringHelper#areEqual(String, String, boolean)
+     * @see <a href="https://en.wikipedia.org/wiki/Palindrome">Palindrome (Wikipedia)</a>
+     *
+     * @param string to check
+     * @param lenient whether to be lenient or not
+     *
+     * @return if the string is a Palindrome
+     *
+     * @since 2.1.0
+     */
+    public static boolean isPalindrome(String string, boolean lenient) {
+        return areEqual(string, new StringBuffer(getNullSafe(string)).reverse().toString(), lenient);
     }
 }
