@@ -76,10 +76,7 @@ public class NumberHelperTest {
 
     @Test
     public void getNumOfDigitsTest() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Zero is not allowed as an argument.");
-        NumberHelper.getNumOfDigits(0);
-
+        assertEquals(1, NumberHelper.getNumOfDigits(0));
         assertEquals(2, NumberHelper.getNumOfDigits(10));
         assertEquals(2, NumberHelper.getNumOfDigits(-10));
     }
