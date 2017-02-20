@@ -213,4 +213,22 @@ public final class NumberHelper {
 
         return hashSet.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    /**
+     * Returns the number of digits in the passed in number
+     *
+     * @param number for which to count the number of digits in
+     *
+     * @return number of digits
+     *
+     * @since 2.1.0
+     *
+     */
+    public static int getNumOfDigits(int number) {
+        if (number == 0) {
+            return 1;
+        }
+
+        return (int)Math.log10(Math.abs(number)) + 1;
+    }
 }

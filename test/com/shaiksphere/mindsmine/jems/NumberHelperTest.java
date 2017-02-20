@@ -75,6 +75,16 @@ public class NumberHelperTest {
     }
 
     @Test
+    public void getNumOfDigitsTest() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Zero is not allowed as an argument.");
+        NumberHelper.getNumOfDigits(0);
+
+        assertEquals(2, NumberHelper.getNumOfDigits(10));
+        assertEquals(2, NumberHelper.getNumOfDigits(-10));
+    }
+
+    @Test
     public void getUniqueRandomNumbersTest() {
         final int lowerBound = 10;
         final int upperBound = 81;
