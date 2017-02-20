@@ -13,6 +13,7 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 ### Releases ###
 
 **2.1.0**
+* Added unique random numbers generator method
 * Added palindrome test, with leniency support
 * Added string equality test, with leniency support
 
