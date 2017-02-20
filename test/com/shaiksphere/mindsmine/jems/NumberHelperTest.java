@@ -77,6 +77,7 @@ public class NumberHelperTest {
     @Test
     public void getNumOfDigitsTest() {
         assertEquals(1, NumberHelper.getNumOfDigits(0));
+        assertEquals(1, NumberHelper.getNumOfDigits(2));
         assertEquals(2, NumberHelper.getNumOfDigits(10));
         assertEquals(2, NumberHelper.getNumOfDigits(-10));
     }
