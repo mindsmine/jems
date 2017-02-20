@@ -32,9 +32,9 @@ public final class StringHelper {
 
     /**
      * Returns a non-null string, even if the object being passed is a null string.
-     *
+     * <br><br>
      * If the passed-in object is a non-null string, then it is returned as-is.
-     *
+     * <br><br>
      * Example usage:
      *
      * <pre>
@@ -69,6 +69,8 @@ public final class StringHelper {
      *     <li>a zero-length string</li>
      *     <li>comprised of whitespaces as defined by {@link java.lang.Character#isWhitespace(char)}</li>
      * </ul>
+     * <br>
+     * Example usage:
      *
      * <pre>
      *     StringHelper.isBlank(null)          = true
@@ -122,12 +124,25 @@ public final class StringHelper {
     /**
      * Returns <code>true</code> if the passed values are equal, <code>false</code> otherwise.
      * <br><br>
-     * When the lenient flag is set to <code>true</code>, the comparison will ignore the case and trim the strings
-     * before comparing; the two strings are considered equal if,
      * <ul>
-     *     <li>Both strings are blank, as defined by {@link StringHelper#isBlank(String)}.</li>
-     *     <li>Trimmed versions of both strings, as defined by {@link String#trim()}, are equal.</li>
+     *     <li>
+     *         When the lenient flag is set to <code>true</code>, the comparison will ignore the case and trim the
+     *         strings before comparing; the two strings are considered equal if,
+     *         <ul>
+     *             <li>Both strings are blank, as defined by {@link StringHelper#isBlank(String)}.</li>
+     *             <li>Trimmed versions of both strings, as defined by {@link String#trim()}, are equal.</li>
+     *         </ul>
+     *     </li>
+     *     <li>
+     *         When the lenient flag is set to <code>false</code>, the two strings are considered equal if,
+     *         <ul>
+     *             <li>Both strings are not null</li>
+     *             <li>Both strings represent the same sequence of characters</li>
+     *         </ul>
+     *     </li>
      * </ul>
+     * <br>
+     * Example usage:
      *
      * <pre>
      *     StringHelper.areEqual(null, null, true)       = true
@@ -140,18 +155,7 @@ public final class StringHelper {
      *     StringHelper.areEqual("ab c", "abc", true)    = false
      *     StringHelper.areEqual("ABC", "abc", true)     = true
      *     StringHelper.areEqual("abc", "abc", true)     = true
-     * </pre>
      *
-     * @see java.lang.String#equalsIgnoreCase(String)
-     *
-     * <br><br>
-     * When the lenient flag is set to <code>false</code>, the two strings are considered equal if,
-     * <ul>
-     *     <li>Both strings are not null</li>
-     *     <li>Both strings represent the same sequence of characters</li>
-     * </ul>
-     *
-     * <pre>
      *     StringHelper.areEqual(null, null, false)      = false
      *     StringHelper.areEqual(null, "", false)        = false
      *     StringHelper.areEqual("", null, false)        = false
@@ -164,6 +168,7 @@ public final class StringHelper {
      *     StringHelper.areEqual("abc", "abc", false)    = true
      * </pre>
      *
+     * @see java.lang.String#equalsIgnoreCase(String)
      * @see java.lang.String#equals(Object)
      *
      * @param string1 to compare
@@ -187,6 +192,8 @@ public final class StringHelper {
 
     /**
      * Returns <code>true</code> if the passed string contains only digits, false otherwise.
+     * <br><br>
+     * Example usage:
      *
      * <pre>
      *     StringHelper.isOnlyDigits(null)          = false
@@ -234,6 +241,8 @@ public final class StringHelper {
      * such as madam or kayak.
      * <br><br>
      * Convenience method equivalent to <code>StringHelper.areEqual(string, string.reverse, flag)</code>
+     * <br><br>
+     * Example usage:
      *
      * <pre>
      *     StringHelper.isPalindrome(null, true)      = true
@@ -246,8 +255,7 @@ public final class StringHelper {
      *     StringHelper.isPalindrome("madam", true)   = true
      *     StringHelper.isPalindrome("Madam", true)   = true
      *     StringHelper.isPalindrome("hello", true)   = false
-     * </pre>
-     * <pre>
+     *
      *     StringHelper.isPalindrome(null, false)     = false
      *     StringHelper.isPalindrome("", false)       = true
      *     StringHelper.isPalindrome("   ", false)    = true

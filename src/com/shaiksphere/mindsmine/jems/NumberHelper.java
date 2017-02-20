@@ -26,6 +26,14 @@ import java.util.concurrent.ThreadLocalRandom;
  * convertible to the primitive types <code>byte</code>, <code>double</code>, <code>float</code>, <code>int</code>,
  * <code>long</code>, and <code>short</code>.
  *
+ * @see Number
+ * @see Byte
+ * @see Double
+ * @see Float
+ * @see Integer
+ * @see Long
+ * @see Short
+ *
  * @author Mohammed Shaik Hussain Ali
  * 
  * @since 2.0.0
@@ -151,9 +159,11 @@ public final class NumberHelper {
     }
 
     /**
-     * Returns an array of pseudorandom int values between the zero (inclusive) and the specified upper bound (exclusive).
+     * Returns an array of pseudorandom int values between zero (inclusive) and the specified upper bound (exclusive).
      * <br><br>
      * Convenience method equivalent to <code>NumberHelper.getUniqueRandomNumbers(0, upperBound, arraySize)</code>
+     *
+     * @see NumberHelper#getUniqueRandomNumbers(int, int, int)
      *
      * @param bound the upper bound (exclusive)
      * @param arraySize the number of unique random numbers expected
@@ -175,6 +185,10 @@ public final class NumberHelper {
     /**
      * Returns an array of pseudorandom int values between the specified lower bound (inclusive) and the specified upper
      * bound (exclusive).
+     *
+     * @see ThreadLocalRandom#nextInt(int, int)
+     * @see HashSet#stream()
+     * @see java.util.stream.Stream#mapToInt(java.util.function.ToIntFunction)
      *
      * @param lowerBound the least value returned
      * @param upperBound the upper bound (exclusive)
