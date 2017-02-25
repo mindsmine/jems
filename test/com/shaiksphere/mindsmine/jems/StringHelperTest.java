@@ -40,10 +40,49 @@ public class StringHelperTest {
     }
 
     @Test
+    public void areEqualLenientTest() {
+        assertTrue(StringHelper.areEqual(null, null, true));
+        assertTrue(StringHelper.areEqual(null, "", true));
+        assertTrue(StringHelper.areEqual("", null, true));
+
+        assertTrue(StringHelper.areEqual("", "", true));
+
+        assertTrue(StringHelper.areEqual("   ", "", true));
+        assertTrue(StringHelper.areEqual(" abc", "abc ", true));
+
+        assertFalse(StringHelper.areEqual("", "abc", true));
+        assertFalse(StringHelper.areEqual("ab c", "abc", true));
+
+        assertTrue(StringHelper.areEqual("ABC", "abc", true));
+        assertTrue(StringHelper.areEqual("abc", "abc", true));
+    }
+
+    @Test
+    public void areEqualStrictTest() {
+        assertFalse(StringHelper.areEqual(null, null, false));
+        assertFalse(StringHelper.areEqual(null, "", false));
+        assertFalse(StringHelper.areEqual("", null, false));
+
+        assertTrue(StringHelper.areEqual("", "", false));
+
+        assertFalse(StringHelper.areEqual("   ", "", false));
+        assertFalse(StringHelper.areEqual(" abc", "abc ", false));
+
+        assertFalse(StringHelper.areEqual("", "abc", false));
+        assertFalse(StringHelper.areEqual("ab c", "abc", false));
+
+        assertFalse(StringHelper.areEqual("ABC", "abc", false));
+        assertTrue(StringHelper.areEqual("abc", "abc", true));
+    }
+
+    @Test
     public void areEqualTest() {
         assertTrue(StringHelper.areEqual(null, null));
         assertTrue(StringHelper.areEqual(null, ""));
+        assertTrue(StringHelper.areEqual("", null));
+
         assertTrue(StringHelper.areEqual("", ""));
+
         assertTrue(StringHelper.areEqual("   ", ""));
         assertTrue(StringHelper.areEqual(" abc", "abc "));
 
@@ -51,6 +90,7 @@ public class StringHelperTest {
         assertFalse(StringHelper.areEqual("ab c", "abc"));
 
         assertTrue(StringHelper.areEqual("ABC", "abc"));
+        assertTrue(StringHelper.areEqual("abc", "abc"));
     }
 
     @Test
@@ -62,5 +102,46 @@ public class StringHelperTest {
         assertFalse(StringHelper.isOnlyDigits("11.67"));
 
         assertTrue(StringHelper.isOnlyDigits("17650"));
+    }
+
+    @Test
+    public void isPalindromeLenientTest() {
+        assertTrue(StringHelper.isPalindrome(null, true));
+        assertTrue(StringHelper.isPalindrome("", true));
+        assertTrue(StringHelper.isPalindrome("   ", true));
+        assertTrue(StringHelper.isPalindrome(" aba", true));
+        assertTrue(StringHelper.isPalindrome("aba", true));
+        assertTrue(StringHelper.isPalindrome("mAdAm", true));
+        assertTrue(StringHelper.isPalindrome("madAm", true));
+        assertTrue(StringHelper.isPalindrome("madam", true));
+        assertTrue(StringHelper.isPalindrome("Madam", true));
+        assertFalse(StringHelper.isPalindrome("hello", true));
+    }
+
+    @Test
+    public void isPalindromeStrictTest() {
+        assertFalse(StringHelper.isPalindrome(null, false));
+        assertTrue(StringHelper.isPalindrome("", false));
+        assertTrue(StringHelper.isPalindrome("   ", false));
+        assertFalse(StringHelper.isPalindrome(" aba", false));
+        assertTrue(StringHelper.isPalindrome("aba", false));
+        assertTrue(StringHelper.isPalindrome("mAdAm", false));
+        assertFalse(StringHelper.isPalindrome("madAm", false));
+        assertTrue(StringHelper.isPalindrome("madam", false));
+        assertFalse(StringHelper.isPalindrome("Madam", false));
+        assertFalse(StringHelper.isPalindrome("hello", false));
+    }
+    @Test
+    public void isPalindromeTest() {
+        assertTrue(StringHelper.isPalindrome(null));
+        assertTrue(StringHelper.isPalindrome(""));
+        assertTrue(StringHelper.isPalindrome("   "));
+        assertTrue(StringHelper.isPalindrome(" aba"));
+        assertTrue(StringHelper.isPalindrome("aba"));
+        assertTrue(StringHelper.isPalindrome("mAdAm"));
+        assertTrue(StringHelper.isPalindrome("madAm"));
+        assertTrue(StringHelper.isPalindrome("madam"));
+        assertTrue(StringHelper.isPalindrome("Madam"));
+        assertFalse(StringHelper.isPalindrome("hello"));
     }
 }

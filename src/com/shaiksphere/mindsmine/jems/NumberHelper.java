@@ -16,12 +16,23 @@ limitations under the License.
 
 package com.shaiksphere.mindsmine.jems;
 
+import java.util.HashSet;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * A collection of useful static methods to deal with numbers.
  *
  * The abstract class {@link Number} is the superclass of platform classes representing numeric values that are
  * convertible to the primitive types <code>byte</code>, <code>double</code>, <code>float</code>, <code>int</code>,
  * <code>long</code>, and <code>short</code>.
+ *
+ * @see Number
+ * @see Byte
+ * @see Double
+ * @see Float
+ * @see Integer
+ * @see Long
+ * @see Short
  *
  * @author Mohammed Shaik Hussain Ali
  * 
@@ -145,5 +156,93 @@ public final class NumberHelper {
      */
     public static Integer getNullSafe(Integer value) {
         return (value == null) ? Integer.MIN_VALUE : value;
+    }
+
+    /**
+     * Returns an array of pseudorandom int values between zero (inclusive) and the specified upper bound (exclusive).
+     * <br><br>
+     * Convenience method equivalent to <code>NumberHelper.getUniqueRandomNumbers(0, upperBound, arraySize)</code>
+     *
+     * @see NumberHelper#getUniqueRandomNumbers(int, int, int)
+     *
+     * @param bound the upper bound (exclusive)
+     * @param arraySize the number of unique random numbers expected
+     *
+     * @return an <code>Integer</code> array of pseudorandom int values between zero (inclusive) and the upper bound
+     * (exclusive).
+     *
+     * @throws IllegalArgumentException if any of the arguments are negative integers
+     *
+     * @throws IllegalArgumentException if lower bound is greater than or equal to upper bound
+     *
+     * @since 2.1.0
+     *
+     */
+    public static int[] getUniqueRandomNumbers(int bound, int arraySize) {
+        return getUniqueRandomNumbers(0, bound, arraySize);
+    }
+
+    /**
+     * Returns an array of pseudorandom int values between the specified lower bound (inclusive) and the specified upper
+     * bound (exclusive).
+     *
+     * @see ThreadLocalRandom#nextInt(int, int)
+     * @see HashSet#stream()
+     * @see java.util.stream.Stream#mapToInt(java.util.function.ToIntFunction)
+     *
+     * @param lowerBound the least value returned
+     * @param upperBound the upper bound (exclusive)
+     * @param arraySize the number of unique random numbers expected
+     *
+     * @return an <code>Integer</code> array of pseudorandom int values between the lower bound (inclusive) and the
+     * upper bound (exclusive).
+     *
+     * @throws IllegalArgumentException if any of the arguments are negative integers
+     *
+     * @throws IllegalArgumentException if lower bound is greater than or equal to upper bound
+     *
+     * @since 2.1.0
+     *
+     */
+    public static int[] getUniqueRandomNumbers(int lowerBound, int upperBound, int arraySize) {
+        if (lowerBound < 0 || upperBound < 0 || arraySize < 0) {
+            throw new IllegalArgumentException("Negative number is not allowed as an argument.");
+        }
+
+        if (lowerBound >= upperBound) {
+            throw new IllegalArgumentException("Lower Bound cannot be larger than Upper Bound.");
+        }
+
+        if (arraySize > upperBound || arraySize > (upperBound - lowerBound)) {
+            throw new IllegalArgumentException("Not enough unique numbers available for the array size.");
+        }
+
+        HashSet<Integer> hashSet = new HashSet<>(arraySize);
+
+        ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
+
+        while (hashSet.size() < arraySize) {
+            hashSet.add(threadLocalRandom.nextInt(lowerBound, upperBound));
+        }
+
+        return hashSet.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    /**
+     * Returns the number of digits in the passed in number
+     *
+     * @param number for which to count the number of digits in
+     *
+     * @return number of digits
+     *
+     * @since 2.1.0
+     *
+     */
+    public static int getNumOfDigits(int number) {
+        if (number == 0) {
+            return 1;
+        }
+
+        return (int)Math.log10(Math.abs(number)) + 1;
     }
 }
