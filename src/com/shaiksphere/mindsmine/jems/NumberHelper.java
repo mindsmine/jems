@@ -205,7 +205,7 @@ public final class NumberHelper {
      *
      */
     public static int[] getUniqueRandomNumbers(int lowerBound, int upperBound, int arraySize) {
-        if (lowerBound < 1 || upperBound < 1 || arraySize < 1) {
+        if (lowerBound < 0 || upperBound < 0 || arraySize < 0) {
             throw new IllegalArgumentException("Negative number is not allowed as an argument.");
         }
 

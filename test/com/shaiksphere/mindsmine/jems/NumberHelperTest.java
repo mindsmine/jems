@@ -83,47 +83,34 @@ public class NumberHelperTest {
     }
 
     @Test
-    public void getUniqueRandomNumbersTest() {
-        final int lowerBound = 10;
-        final int upperBound = 81;
-        final int arraySize = 12;
-
+    public void getUniqueRandomNumbersNegativeNumberExceptionTest() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(-1, -1);
-
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(-1, arraySize);
-
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(upperBound, -1);
-
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(-1, -1, -1);
-
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(-1, upperBound, -1);
-
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(-1, upperBound, arraySize);
-
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
         NumberHelper.getUniqueRandomNumbers(lowerBound, -1, arraySize);
+    }
 
+    @Test
+    public void getUniqueRandomNumbersLowerToUpperExceptionTest() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Lower Bound cannot be larger than Upper Bound.");
         NumberHelper.getUniqueRandomNumbers(upperBound, lowerBound, arraySize);
+    }
 
+    @Test
+    public void getUniqueRandomNumbersNotEnoughNumbersExceptionTest() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("Not enough unique numbers available for the array size.");
         NumberHelper.getUniqueRandomNumbers(lowerBound, arraySize, upperBound);
+    }
 
+    @Test
+    public void getUniqueRandomNumbersTest() {
         int [] array1 = NumberHelper.getUniqueRandomNumbers(upperBound, arraySize);
         int [] array2 = NumberHelper.getUniqueRandomNumbers(lowerBound, upperBound, arraySize);
 
@@ -133,6 +120,10 @@ public class NumberHelperTest {
         assertTrue(areUniqueValues(array1));
         assertTrue(areUniqueValues(array2));
     }
+
+    private final int lowerBound = 10;
+    private final int upperBound = 81;
+    private final int arraySize = 12;
 
     private boolean areUniqueValues(int [] array) {
         HashSet<Integer> hashSet = new HashSet<>(array.length);
