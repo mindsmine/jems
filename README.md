@@ -13,6 +13,8 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 ### Releases ###
 
 **3.0.0**
+* Added perfect square test method
+* Added more null safe methods
 * Java 9 complaint
 
 **2.1.0**
