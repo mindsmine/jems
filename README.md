@@ -12,6 +12,9 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**3.0.0**
+* Java 9 complaint
+
 **2.1.0**
 * Added number of digits counting method
 * Added unique random numbers generator method
