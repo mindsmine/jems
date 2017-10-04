@@ -87,13 +87,11 @@ public final class StringHelper {
      *
      */
     public static boolean isBlank(String string) {
-        int strLen;
-
-        if (string == null || (strLen = string.length()) == 0) {
+        if (string == null || string.isEmpty()) {
             return true;
         }
 
-        for (int i = 0; i < strLen; i++) {
+        for (int i = 0; i < string.length(); i++) {
             if (!Character.isWhitespace(string.charAt(i))) {
                 return false;
             }
