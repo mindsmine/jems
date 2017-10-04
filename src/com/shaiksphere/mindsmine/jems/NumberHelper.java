@@ -43,6 +43,35 @@ public final class NumberHelper {
     private NumberHelper() {}
 
     /**
+     * Returns a non-null byte, even if the object being passed is a null byte.
+     * <br><br>
+     * If the passed-in object is a non-null byte, then it is returned as-is.
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      Byte num1 = 10;
+     *      Byte num2 = null;
+     *
+     *      Byte num3 = NumberHelper.getNullSafe(num1);
+     *
+     *      Byte num4 = NumberHelper.getNullSafe(num2);
+     *
+     *      // num3 now contains the number: 10
+     *      // num4 now contains the number: -128.
+     * </pre>
+     *
+     * @param value The number to safeguard against <code>null</code>.
+     *
+     * @return If value is <code>null</code> then {@link Byte#MIN_VALUE}.
+     *
+     * @since 3.0.0
+     *
+     */
+    public static Byte getNullSafe(Byte value) {
+        return (value == null) ? Byte.MIN_VALUE : value;
+    }
+
+    /**
      * Returns a non-null short, even if the object being passed is a null short.
      * <br><br>
      * If the passed-in object is a non-null short, then it is returned as-is.
@@ -107,7 +136,7 @@ public final class NumberHelper {
      * <br><br>
      * Example usage:
      * <pre>
-     *      Float num1 = 10;
+     *      Float num1 = 10.0f;
      *      Float num2 = null;
      *
      *      Float num3 = NumberHelper.getNullSafe(num1);
@@ -127,6 +156,35 @@ public final class NumberHelper {
      */
     public static Float getNullSafe(Float value) {
         return (value == null) ? Float.MIN_VALUE : value;
+    }
+
+    /**
+     * Returns a non-null double, even if the object being passed is a null double.
+     * <br><br>
+     * If the passed-in object is a non-null double, then it is returned as-is.
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      Double num1 = 10.0d;
+     *      Double num2 = null;
+     *
+     *      Double num3 = NumberHelper.getNullSafe(num1);
+     *
+     *      Double num4 = NumberHelper.getNullSafe(num2);
+     *
+     *      // num3 now contains the number: 10
+     *      // num4 now contains the number: 2^-149
+     * </pre>
+     *
+     * @param value The number to safeguard against <code>null</code>.
+     *
+     * @return If value is <code>null</code> then {@link Double#MIN_VALUE}.
+     *
+     * @since 3.0.0
+     *
+     */
+    public static Double getNullSafe(Double value) {
+        return (value == null) ? Double.MIN_VALUE : value;
     }
 
     /**
@@ -156,6 +214,29 @@ public final class NumberHelper {
      */
     public static Integer getNullSafe(Integer value) {
         return (value == null) ? Integer.MIN_VALUE : value;
+    }
+
+
+    public static boolean isPerfectSquare(Byte value) {
+        return isPerfectSquare(getNullSafe(value).longValue());
+    }
+
+    public static boolean isPerfectSquare(Short value) {
+        return isPerfectSquare(getNullSafe(value).longValue());
+    }
+
+    public static boolean isPerfectSquare(Integer value) {
+        return isPerfectSquare(getNullSafe(value).longValue());
+    }
+
+    public static boolean isPerfectSquare(Long value) {
+        if (getNullSafe(value) < 0) {
+            return false;
+        }
+
+        long sqrt = (long)Math.sqrt(value);
+
+        return Math.pow(sqrt, 2) == value;
     }
 
     /**
