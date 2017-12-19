@@ -64,7 +64,7 @@ public final class NumberHelper {
      *
      * @return If value is <code>null</code> then {@link Byte#MIN_VALUE}.
      *
-     * @since 3.0.0
+     * @since 3.1.0
      *
      */
     public static Byte getNullSafe(Byte value) {
@@ -180,7 +180,7 @@ public final class NumberHelper {
      *
      * @return If value is <code>null</code> then {@link Double#MIN_VALUE}.
      *
-     * @since 3.0.0
+     * @since 3.1.0
      *
      */
     public static Double getNullSafe(Double value) {
