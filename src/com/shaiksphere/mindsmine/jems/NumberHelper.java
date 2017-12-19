@@ -217,18 +217,110 @@ public final class NumberHelper {
     }
 
 
+    /**
+     * Returns <code>true</code> if number is a Perfect Square
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      NumberHelper.isPerfectSquare(0);    // true
+     *      NumberHelper.isPerfectSquare(1);    // true
+     *      NumberHelper.isPerfectSquare(81);   // true
+     *      NumberHelper.isPerfectSquare(100);  // true
+     *      NumberHelper.isPerfectSquare(5);    // false
+     *      NumberHelper.isPerfectSquare(101);  // false
+     *      NumberHelper.isPerfectSquare(250);  // false
+     * </pre>
+     *
+     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     *
+     * @param value The number to test
+     *
+     * @return Whether or not the number is a Perfect Square
+     *
+     * @since 3.1.0
+     *
+     */
     public static boolean isPerfectSquare(Byte value) {
         return isPerfectSquare(getNullSafe(value).longValue());
     }
 
+    /**
+     * Returns <code>true</code> if number is a Perfect Square
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      NumberHelper.isPerfectSquare(0);    // true
+     *      NumberHelper.isPerfectSquare(1);    // true
+     *      NumberHelper.isPerfectSquare(81);   // true
+     *      NumberHelper.isPerfectSquare(100);  // true
+     *      NumberHelper.isPerfectSquare(5);    // false
+     *      NumberHelper.isPerfectSquare(101);  // false
+     *      NumberHelper.isPerfectSquare(250);  // false
+     * </pre>
+     *
+     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     *
+     * @param value The number to test
+     *
+     * @return Whether or not the number is a Perfect Square
+     *
+     * @since 3.1.0
+     *
+     */
     public static boolean isPerfectSquare(Short value) {
         return isPerfectSquare(getNullSafe(value).longValue());
     }
 
+    /**
+     * Returns <code>true</code> if number is a Perfect Square
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      NumberHelper.isPerfectSquare(0);    // true
+     *      NumberHelper.isPerfectSquare(1);    // true
+     *      NumberHelper.isPerfectSquare(81);   // true
+     *      NumberHelper.isPerfectSquare(100);  // true
+     *      NumberHelper.isPerfectSquare(5);    // false
+     *      NumberHelper.isPerfectSquare(101);  // false
+     *      NumberHelper.isPerfectSquare(250);  // false
+     * </pre>
+     *
+     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     *
+     * @param value The number to test
+     *
+     * @return Whether or not the number is a Perfect Square
+     *
+     * @since 3.1.0
+     *
+     */
     public static boolean isPerfectSquare(Integer value) {
         return isPerfectSquare(getNullSafe(value).longValue());
     }
 
+    /**
+     * Returns <code>true</code> if number is a Perfect Square
+     * <br><br>
+     * Example usage:
+     * <pre>
+     *      NumberHelper.isPerfectSquare(0);    // true
+     *      NumberHelper.isPerfectSquare(1);    // true
+     *      NumberHelper.isPerfectSquare(81);   // true
+     *      NumberHelper.isPerfectSquare(100);  // true
+     *      NumberHelper.isPerfectSquare(5);    // false
+     *      NumberHelper.isPerfectSquare(101);  // false
+     *      NumberHelper.isPerfectSquare(250);  // false
+     * </pre>
+     *
+     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     *
+     * @param value The number to test
+     *
+     * @return Whether or not the number is a Perfect Square
+     *
+     * @since 3.1.0
+     *
+     */
     public static boolean isPerfectSquare(Long value) {
         if (getNullSafe(value) < 0) {
             return false;
