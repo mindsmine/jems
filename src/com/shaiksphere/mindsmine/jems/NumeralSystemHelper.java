@@ -32,51 +32,59 @@ package com.shaiksphere.mindsmine.jems;
 final public class NumeralSystemHelper {
     private NumeralSystemHelper() {}
 
+    private static String convert(int valueStr, int to) {
+        return Integer.toString(Integer.parseUnsignedInt(Integer.toString(valueStr), 10), to);
+    }
+
+    private static String convert(String valueStr, int from, int to) {
+        return Integer.toString(Integer.parseUnsignedInt(valueStr, from), to);
+    }
+
     public static String convertDecimalToHexadecimal(int integer) {
-        return Integer.toHexString(integer);
+        return convert(integer, 16);
     }
 
     public static String convertDecimalToBinary(int integer) {
-        return Integer.toBinaryString(integer);
+        return convert(integer, 2);
     }
 
     public static String convertDecimalToOctal(int integer) {
-        return Integer.toOctalString(integer);
+        return convert(integer, 8);
     }
 
     public static String convertBinaryToHexadecimal(String binaryStr) {
-        return Integer.toHexString(Integer.parseInt(binaryStr, 2));
+        return convert(binaryStr, 2, 16);
     }
 
     public static String convertBinaryToOctal(String binaryStr) {
-        return Integer.toOctalString(Integer.parseInt(binaryStr, 2));
+        return convert(binaryStr, 2, 8);
     }
 
     public static String convertBinaryToDecimal(String binaryStr) {
-        return Integer.toString(Integer.parseInt(binaryStr, 2));
+        return convert(binaryStr, 2, 10);
     }
 
     public static String convertHexadecimalToBinary(String hexStr) {
-        return Integer.toBinaryString(Integer.parseInt(hexStr, 16));
+        return convert(hexStr, 16, 2);
     }
 
     public static String convertHexadecimalToOctal(String hexStr) {
-        return Integer.toOctalString(Integer.parseInt(hexStr, 16));
+        return convert(hexStr, 16, 8);
     }
 
     public static String convertHexadecimalToDecimal(String hexStr) {
-        return Integer.toString(Integer.parseInt(hexStr, 16));
+        return convert(hexStr, 16, 10);
     }
 
     public static String convertOctalToBinary(String octalStr) {
-        return Integer.toBinaryString(Integer.parseInt(octalStr, 8));
+        return convert(octalStr, 8, 2);
     }
 
     public static String convertOctalToHexadecimal(String octalStr) {
-        return Integer.toHexString(Integer.parseInt(octalStr, 8));
+        return convert(octalStr, 8, 16);
     }
 
     public static String convertOctalToDecimal(String octalStr) {
-        return Integer.toString(Integer.parseInt(octalStr, 8));
+        return convert(octalStr, 8, 10);
     }
 }
