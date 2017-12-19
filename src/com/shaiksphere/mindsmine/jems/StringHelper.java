@@ -267,7 +267,7 @@ public final class StringHelper {
      * </pre>
      *
      * @see StringHelper#areEqual(String, String, boolean)
-     * @see <a href="https://en.wikipedia.org/wiki/Palindrome">Palindrome (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Palindrome">Palindrome (Wikipedia)</a>
      *
      * @param string to check
      * @param lenient whether to be lenient or not

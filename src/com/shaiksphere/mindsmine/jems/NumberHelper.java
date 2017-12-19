@@ -231,7 +231,7 @@ public final class NumberHelper {
      *      NumberHelper.isPerfectSquare(250);  // false
      * </pre>
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Perfect_square">Perfect Square (Wikipedia)</a>
      *
      * @param value The number to test
      *
@@ -258,7 +258,7 @@ public final class NumberHelper {
      *      NumberHelper.isPerfectSquare(250);  // false
      * </pre>
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Perfect_square">Perfect Square (Wikipedia)</a>
      *
      * @param value The number to test
      *
@@ -285,7 +285,7 @@ public final class NumberHelper {
      *      NumberHelper.isPerfectSquare(250);  // false
      * </pre>
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Perfect_square">Perfect Square (Wikipedia)</a>
      *
      * @param value The number to test
      *
@@ -312,7 +312,7 @@ public final class NumberHelper {
      *      NumberHelper.isPerfectSquare(250);  // false
      * </pre>
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Perfect_square">Perfect Square (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Perfect_square">Perfect Square (Wikipedia)</a>
      *
      * @param value The number to test
      *

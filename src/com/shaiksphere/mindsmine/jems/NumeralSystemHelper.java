@@ -22,7 +22,7 @@ package com.shaiksphere.mindsmine.jems;
  * A numeral system is a writing system for expressing numbers; that is, a mathematical notation for representing
  * numbers of a given set, using digits or other symbols in a consistent manner.
  *
- * @see <a href="https://en.wikipedia.org/wiki/Numeral_system">Numeral System (Wikipedia)</a>
+ * @see <a href="@WIKI_URI@/Numeral_system">Numeral System (Wikipedia)</a>
  *
  * @author Mohammed Shaik Hussain Ali
  *

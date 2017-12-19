@@ -25,8 +25,8 @@ package com.shaiksphere.mindsmine.jems.units;
  * this common meaning. The popularity of major commercial computing architectures has aided in the ubiquitous acceptance
  * of the 8-bit size.
  *
- * @see <a href="https://en.wikipedia.org/wiki/Byte">Byte (Wikipedia)</a>
- * @see <a href="https://en.wikipedia.org/wiki/IEC_80000-13">IEC 80000-13 (Wikipedia)</a>
+ * @see <a href="@WIKI_URI@/Byte">Byte (Wikipedia)</a>
+ * @see <a href="@WIKI_URI@/IEC_80000-13">IEC 80000-13 (Wikipedia)</a>
  *
  * @author Mohammed Shaik Hussain Ali
  *
@@ -41,7 +41,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Kibibyte = 1024 Bytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Kibibyte">Kibibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Kibibyte">Kibibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -55,7 +55,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Mebibyte = 1024 Kibibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Mebibyte">Mebibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Mebibyte">Mebibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -69,7 +69,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Gibibyte = 1024 Mebibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Gibibyte">Gibibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Gibibyte">Gibibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -83,7 +83,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Tebibyte = 1024 Gibibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Tebibyte">Tebibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Tebibyte">Tebibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -97,7 +97,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Pebibyte = 1024 Tebibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Pebibyte">Pebibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Pebibyte">Pebibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -111,7 +111,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Exbibyte = 1024 Pebibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Exbibyte">Exbibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Exbibyte">Exbibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -125,7 +125,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Zebibyte = 1024 Exbibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Zebibyte">Zebibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Zebibyte">Zebibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *
@@ -139,7 +139,7 @@ public enum MemoryUnit {
      * <br><br>
      * 1 Yobibyte = 1024 Zebibytes
      *
-     * @see <a href="https://en.wikipedia.org/wiki/Yobibyte">Yobibyte (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Yobibyte">Yobibyte (Wikipedia)</a>
      *
      * @since 2.0.0
      *

@@ -201,6 +201,7 @@ limitations under the License.
                                             <token key="COMPANY_LINK" value="${project.url}"/>
                                             <token key="PRODUCT_NAME" value="${project.name}"/>
                                             <token key="PRODUCT_VERSION" value="${project.version}"/>
+                                            <token key="WIKI_URI" value="https://en.wikipedia.org/wiki"/>
                                         </replacetokens>
                                     </filterchain>
                                 </copy>
