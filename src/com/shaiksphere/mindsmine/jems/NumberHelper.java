@@ -218,7 +218,7 @@ public final class NumberHelper {
 
 
     /**
-     * Returns <code>true</code> if number is a Perfect Square
+     * Returns <code>true</code> if number is a Perfect Square.
      * <br><br>
      * Example usage:
      * <pre>
@@ -245,7 +245,7 @@ public final class NumberHelper {
     }
 
     /**
-     * Returns <code>true</code> if number is a Perfect Square
+     * Returns <code>true</code> if number is a Perfect Square.
      * <br><br>
      * Example usage:
      * <pre>
@@ -272,7 +272,7 @@ public final class NumberHelper {
     }
 
     /**
-     * Returns <code>true</code> if number is a Perfect Square
+     * Returns <code>true</code> if number is a Perfect Square.
      * <br><br>
      * Example usage:
      * <pre>
@@ -299,7 +299,7 @@ public final class NumberHelper {
     }
 
     /**
-     * Returns <code>true</code> if number is a Perfect Square
+     * Returns <code>true</code> if number is a Perfect Square.
      * <br><br>
      * Example usage:
      * <pre>
@@ -402,7 +402,7 @@ public final class NumberHelper {
     }
 
     /**
-     * Returns the number of digits in the passed in number
+     * Returns the number of digits in the passed in number.
      *
      * @param number for which to count the number of digits in
      *
