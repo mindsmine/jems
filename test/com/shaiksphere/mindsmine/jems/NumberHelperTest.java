@@ -24,6 +24,7 @@ import org.junit.rules.ExpectedException;
 import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class NumberHelperTest {
@@ -31,10 +32,21 @@ public class NumberHelperTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
+    public void getByteNullSafeTest() {
+        Byte var1 = null;
+        Byte var2 = 2;
+        byte var3 = 2;
+
+        assertEquals(Byte.valueOf(Byte.MIN_VALUE), NumberHelper.getNullSafe(var1));
+        assertEquals(Byte.valueOf("2"), NumberHelper.getNullSafe(var2));
+        assertEquals(Byte.valueOf("2"), NumberHelper.getNullSafe(var3));
+    }
+
+    @Test
     public void getShortNullSafeTest() {
         Short var1 = null;
         Short var2 = 2;
-        Short var3 = 2;
+        short var3 = 2;
 
         assertEquals(Short.valueOf(Short.MIN_VALUE), NumberHelper.getNullSafe(var1));
         assertEquals(Short.valueOf("2"), NumberHelper.getNullSafe(var2));
@@ -64,6 +76,17 @@ public class NumberHelperTest {
     }
 
     @Test
+    public void getDoubleNullSafeTest() {
+        Double var1 = null;
+        Double var2 = 2.0d;
+        double var3 = 2.0d;
+
+        assertEquals(Double.MIN_VALUE, NumberHelper.getNullSafe(var1), 0.0d);
+        assertEquals(2.0d, NumberHelper.getNullSafe(var2), 0.0d);
+        assertEquals(2.0d, NumberHelper.getNullSafe(var3), 0.0d);
+    }
+
+    @Test
     public void getIntegerNullSafeTest() {
         Integer var1 = null;
         Integer var2 = 2;
@@ -72,6 +95,18 @@ public class NumberHelperTest {
         assertEquals(Integer.valueOf(Integer.MIN_VALUE), NumberHelper.getNullSafe(var1));
         assertEquals(Integer.valueOf(2), NumberHelper.getNullSafe(var2));
         assertEquals(Integer.valueOf(2), NumberHelper.getNullSafe(var3));
+    }
+
+    @Test
+    public void isPerfectSquareTest() {
+        assertTrue(NumberHelper.isPerfectSquare(0));
+        assertTrue(NumberHelper.isPerfectSquare(1));
+        assertTrue(NumberHelper.isPerfectSquare(81));
+        assertTrue(NumberHelper.isPerfectSquare(100));
+
+        assertFalse(NumberHelper.isPerfectSquare(5));
+        assertFalse(NumberHelper.isPerfectSquare(101));
+        assertFalse(NumberHelper.isPerfectSquare(250));
     }
 
     @Test

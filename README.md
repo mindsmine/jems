@@ -12,6 +12,12 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**3.1.0**
+* Added numeral system methods
+* Added perfect square test method
+* Added more null safe methods
+* Java 9 complaint
+
 **2.1.0**
 * Added number of digits counting method
 * Added unique random numbers generator method

@@ -87,13 +87,11 @@ public final class StringHelper {
      *
      */
     public static boolean isBlank(String string) {
-        int strLen;
-
-        if (string == null || (strLen = string.length()) == 0) {
+        if (string == null || string.isEmpty()) {
             return true;
         }
 
-        for (int i = 0; i < strLen; i++) {
+        for (int i = 0; i < string.length(); i++) {
             if (!Character.isWhitespace(string.charAt(i))) {
                 return false;
             }
@@ -269,7 +267,7 @@ public final class StringHelper {
      * </pre>
      *
      * @see StringHelper#areEqual(String, String, boolean)
-     * @see <a href="https://en.wikipedia.org/wiki/Palindrome">Palindrome (Wikipedia)</a>
+     * @see <a href="@WIKI_URI@/Palindrome">Palindrome (Wikipedia)</a>
      *
      * @param string to check
      * @param lenient whether to be lenient or not

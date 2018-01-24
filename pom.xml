@@ -26,7 +26,7 @@ limitations under the License.
 
     <groupId>com.shaiksphere.mindsmine.jems</groupId>
     <artifactId>jems</artifactId>
-    <version>2.1.0</version>
+    <version>3.1.0</version>
     <packaging>pom</packaging>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -41,10 +41,6 @@ limitations under the License.
     <name>JEMS</name>
     <description>Shaiksphere Inc.</description>
     <url>http://www.shaiksphere.com</url>
-
-    <prerequisites>
-        <maven>3.3.9</maven>
-    </prerequisites>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -92,7 +88,7 @@ limitations under the License.
         <build.test.reports>${path.to.build}/test/reports</build.test.reports>
 
         <output.code>${path.to.dist}</output.code>
-        <output.file>${project.organization.name}-${project.name}-${project.version}.jar</output.file>
+        <output.file>${project.organization.name}-${project.artifactId}-${project.version}.jar</output.file>
 
         <output.docs>${path.to.docs}/${project.organization.name}/${project.artifactId}/${project.version}</output.docs>
     </properties>
@@ -104,6 +100,29 @@ limitations under the License.
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.5.2</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.9</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -182,6 +201,7 @@ limitations under the License.
                                             <token key="COMPANY_LINK" value="${project.url}"/>
                                             <token key="PRODUCT_NAME" value="${project.name}"/>
                                             <token key="PRODUCT_VERSION" value="${project.version}"/>
+                                            <token key="WIKI_URI" value="https://en.wikipedia.org/wiki"/>
                                         </replacetokens>
                                     </filterchain>
                                 </copy>
@@ -220,7 +240,7 @@ limitations under the License.
                                 </tstamp>
                                 <echo level="info" message="Began - Generating ${project.name} Documentation"/>
                                 <echo/>
-                                <javadoc author="true" version="true" use="true"
+                                <javadoc author="true" version="true" use="true" failonerror="true" failonwarning="true"
                                          windowtitle="${project.organization.name} ${project.name}"
                                          destdir="${output.docs}"
                                          sourcepath="${build.source.code}">
@@ -245,18 +265,14 @@ limitations under the License.
                                     </footer>
                                     <bottom>
                                         <![CDATA[
-                                        <small>
-                                            <font size="-1">
-                                                Copyright &#169; 2008, ${IMPL_YEAR},
-                                                <a target="_blank" href="${project.url}">${project.description}</a>.
-                                                All rights reserved.
-                                            </font>
-                                        </small>
+                                        Copyright &#169; 2008, ${IMPL_YEAR},
+                                        <a target="_blank" href="${project.url}">${project.description}</a>.
+                                        All rights reserved.
                                         ]]>
                                     </bottom>
                                     <group title="Simple - Data Type Extensions" packages="com.shaiksphere.mindsmine.jems"/>
                                     <group title="Advanced - Units" packages="com.shaiksphere.mindsmine.jems.units"/>
-                                    <link href="http://docs.oracle.com/javase/8/docs/api/"/>
+                                    <link href="https://docs.oracle.com/javase/9/docs/api/"/>
                                 </javadoc>
                                 <echo/>
                                 <echo level="info" message="Ended - Generating ${project.name} Documentation"/>
