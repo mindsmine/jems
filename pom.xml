@@ -240,7 +240,7 @@ limitations under the License.
                                 </tstamp>
                                 <echo level="info" message="Began - Generating ${project.name} Documentation"/>
                                 <echo/>
-                                <javadoc author="true" version="true" use="true"
+                                <javadoc author="true" version="true" use="true" failonerror="true" failonwarning="true"
                                          windowtitle="${project.organization.name} ${project.name}"
                                          destdir="${output.docs}"
                                          sourcepath="${build.source.code}">
@@ -265,18 +265,14 @@ limitations under the License.
                                     </footer>
                                     <bottom>
                                         <![CDATA[
-                                        <small>
-                                            <font size="-1">
-                                                Copyright &#169; 2008, ${IMPL_YEAR},
-                                                <a target="_blank" href="${project.url}">${project.description}</a>.
-                                                All rights reserved.
-                                            </font>
-                                        </small>
+                                        Copyright &#169; 2008, ${IMPL_YEAR},
+                                        <a target="_blank" href="${project.url}">${project.description}</a>.
+                                        All rights reserved.
                                         ]]>
                                     </bottom>
                                     <group title="Simple - Data Type Extensions" packages="com.shaiksphere.mindsmine.jems"/>
                                     <group title="Advanced - Units" packages="com.shaiksphere.mindsmine.jems.units"/>
-                                    <link href="http://docs.oracle.com/javase/8/docs/api/"/>
+                                    <link href="https://docs.oracle.com/javase/9/docs/api/"/>
                                 </javadoc>
                                 <echo/>
                                 <echo level="info" message="Ended - Generating ${project.name} Documentation"/>
