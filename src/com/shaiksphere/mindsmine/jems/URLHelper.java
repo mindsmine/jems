@@ -64,6 +64,20 @@ public final class URLHelper {
         return true;
     }
 
+    /**
+     * Appends content to the query string of a URL, handling logic for whether to place a question mark or ampersand.
+     *
+     * @param url The URL to append to.
+     * @param param The parameter key to append to the URL.
+     * @param value The parameter value to append to the URL.
+     *
+     * @return The resulting URL
+     *
+     * @throws IllegalArgumentException for Invalid URL or empty arguments
+     *
+     * @since 3.5.0
+     *
+     */
     public static String appendQuery(String url, String param, Object value) {
         if (!isValidURL(url)) {
             throw new IllegalArgumentException("Fatal Error. 'url'. Invalid URL.");
