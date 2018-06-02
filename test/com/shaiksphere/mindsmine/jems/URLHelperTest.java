@@ -83,6 +83,21 @@ public class URLHelperTest {
     }
 
     @Test
+    public void appendQueryInvalidURLExceptionTest() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Fatal Error. 'url'. Invalid URL.");
+        URLHelper.appendQuery(null, null, null);
+        URLHelper.appendQuery(":// should fail", null, null);
+    }
+
+    @Test
+    public void appendQueryInvalidParamExceptionTest() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Fatal Error. 'param'. Only non-empty string(s) are allowed as arguments.");
+        URLHelper.appendQuery("http://www.google.com", null, null);
+    }
+
+    @Test
     public void appendQueryTest() {
         final String url = "http://www.google.com",
                 urlQ = url + "?param1=value1",
@@ -97,41 +112,3 @@ public class URLHelperTest {
         assertEquals("http://www.google.com?param1=value1&param2=value2#hash1", URLHelper.appendQuery(urlQH, param2, value2));
     }
 }
-
-/*
-describe("mindsmine.URL.appendQuery", () => {
-    [
-        [
-            "null URL",
-            null,
-            null,
-            null,
-            "Fatal Error. 'url'. Invalid URL."
-        ],
-        [
-            "invalid URL",
-            ":// should fail",
-            null,
-            null,
-            "Fatal Error. 'url'. Invalid URL."
-        ],
-        [
-            "empty parameter key",
-            "http://www.google.com",
-            null,
-            null,
-            "Fatal Error. 'param'. @ERROR_PERMITTED_STRING@"
-        ]
-    ].forEach(arr => {
-        test(`should throw TypeError due to ${arr[0]}`, () => {
-            function callFunction() {
-                mindsmine.URL.appendQuery(arr[1], arr[2], arr[3]);
-            }
-
-            expect(callFunction).toThrow(TypeError);
-            expect(callFunction).toThrow(arr[4]);
-        });
-    });
-});
-
- */
