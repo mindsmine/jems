@@ -26,7 +26,7 @@ limitations under the License.
 
     <groupId>com.shaiksphere.mindsmine.jems</groupId>
     <artifactId>jems</artifactId>
-    <version>3.1.0</version>
+    <version>3.5.0</version>
     <packaging>pom</packaging>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -116,7 +116,7 @@ limitations under the License.
                                     <version>3.5.2</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>1.9</version>
+                                    <version>1.10</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -243,6 +243,7 @@ limitations under the License.
                                 <javadoc author="true" version="true" use="true" failonerror="true" failonwarning="true"
                                          windowtitle="${project.organization.name} ${project.name}"
                                          destdir="${output.docs}"
+                                         additionalparam="-html5"
                                          sourcepath="${build.source.code}">
                                     <doctitle>
                                         <![CDATA[
@@ -272,7 +273,7 @@ limitations under the License.
                                     </bottom>
                                     <group title="Simple - Data Type Extensions" packages="com.shaiksphere.mindsmine.jems"/>
                                     <group title="Advanced - Units" packages="com.shaiksphere.mindsmine.jems.units"/>
-                                    <link href="https://docs.oracle.com/javase/9/docs/api/"/>
+                                    <link href="https://docs.oracle.com/javase/10/docs/api/"/>
                                 </javadoc>
                                 <echo/>
                                 <echo level="info" message="Ended - Generating ${project.name} Documentation"/>
@@ -290,6 +291,7 @@ limitations under the License.
                                 <echo level="info" message="Began - Compiling ${project.name} source code"/>
                                 <echo/>
                                 <javac debug="on"
+                                       encoding="UTF-8"
                                        debuglevel="${compile.debugLevel}"
                                        deprecation="${compile.deprecation}"
                                        nowarn="${compile.noWarn}"
@@ -350,6 +352,7 @@ limitations under the License.
                                 <echo level="info" message="Began - Compiling ${project.name} test code"/>
                                 <echo/>
                                 <javac debug="on"
+                                       encoding="UTF-8"
                                        debuglevel="${compile.debugLevel}"
                                        deprecation="${compile.deprecation}"
                                        nowarn="${compile.noWarn}"

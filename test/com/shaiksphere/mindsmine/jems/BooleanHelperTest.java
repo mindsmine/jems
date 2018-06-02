@@ -25,12 +25,8 @@ public class BooleanHelperTest {
 
     @Test
     public void getNullSafeTest() {
-        Boolean var1 = null;
-        Boolean var2 = true;
-        boolean var3 = true;
-
-        assertFalse(BooleanHelper.getNullSafe(var1));
-        assertTrue(BooleanHelper.getNullSafe(var2));
-        assertTrue(BooleanHelper.getNullSafe(var3));
+        assertFalse(BooleanHelper.getNullSafe(null));
+        assertTrue(BooleanHelper.getNullSafe(Boolean.TRUE));
+        assertTrue(BooleanHelper.getNullSafe(true));
     }
 }

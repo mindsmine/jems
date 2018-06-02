@@ -12,6 +12,11 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**3.5.0**
+* Added URL support methods
+* Updated the tests code
+* Java 10 complaint
+
 **3.1.0**
 * Added numeral system methods
 * Added perfect square test method

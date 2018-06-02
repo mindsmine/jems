@@ -3,7 +3,7 @@ install: true
 script: mvn clean package
 
 jdk:
-  - oraclejdk9
+  - oraclejdk10
 
 sudo: false
 
