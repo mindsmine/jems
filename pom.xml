@@ -26,7 +26,7 @@ limitations under the License.
 
     <groupId>com.shaiksphere.mindsmine.jems</groupId>
     <artifactId>jems</artifactId>
-    <version>3.5.0</version>
+    <version>3.5.5</version>
     <packaging>pom</packaging>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -90,7 +90,7 @@ limitations under the License.
         <output.code>${path.to.dist}</output.code>
         <output.file>${project.organization.name}-${project.artifactId}-${project.version}.jar</output.file>
 
-        <output.docs>${path.to.docs}/${project.organization.name}/${project.artifactId}/${project.version}</output.docs>
+        <output.docs>${path.to.docs}/${project.version}</output.docs>
     </properties>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -103,7 +103,7 @@ limitations under the License.
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>3.0.0-M2</version>
                 <executions>
                     <execution>
                         <id>enforce</id>
@@ -113,10 +113,10 @@ limitations under the License.
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.2</version>
+                                    <version>(,3.6.0]</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>1.10</version>
+                                    <version>(,12]</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>

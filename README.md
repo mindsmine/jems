@@ -12,6 +12,9 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**3.5.5**
+* Java 12 complaint
+
 **3.5.0**
 * Added URL support methods
 * Updated the tests code
