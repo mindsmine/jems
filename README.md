@@ -12,19 +12,22 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**3.5.6**
+* Java 14 compliant
+
 **3.5.5**
-* Java 12 complaint
+* Java 12 compliant
 
 **3.5.0**
 * Added URL support methods
 * Updated the tests code
-* Java 10 complaint
+* Java 10 compliant
 
 **3.1.0**
 * Added numeral system methods
 * Added perfect square test method
 * Added more null safe methods
-* Java 9 complaint
+* Java 9 compliant
 
 **2.1.0**
 * Added number of digits counting method
