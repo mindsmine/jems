@@ -3,7 +3,7 @@ install: true
 script: mvn clean package
 
 jdk:
-  - openjdk12
+  - openjdk14
 
 sudo: false
 
