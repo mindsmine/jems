@@ -16,20 +16,19 @@ limitations under the License.
 
 package com.shaiksphere.mindsmine.jems;
 
-import org.junit.Rule;
 import org.junit.Test;
 
-import org.junit.rules.ExpectedException;
+import org.junit.function.ThrowingRunnable;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 public class NumberHelperTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void getByteNullSafeTest() {
@@ -99,49 +98,92 @@ public class NumberHelperTest {
 
     @Test
     public void isPerfectSquareTest() {
-        assertTrue(NumberHelper.isPerfectSquare(0));
-        assertTrue(NumberHelper.isPerfectSquare(1));
-        assertTrue(NumberHelper.isPerfectSquare(81));
-        assertTrue(NumberHelper.isPerfectSquare(100));
+        Arrays.asList(
+                0,
+                1,
+                81,
+                100
+        ).forEach(num -> assertTrue(NumberHelper.isPerfectSquare(num)));
 
-        assertFalse(NumberHelper.isPerfectSquare(5));
-        assertFalse(NumberHelper.isPerfectSquare(101));
-        assertFalse(NumberHelper.isPerfectSquare(250));
+        Arrays.asList(
+                5,
+                101,
+                250
+        ).forEach(num -> assertFalse(NumberHelper.isPerfectSquare(num)));
     }
 
     @Test
     public void getNumOfDigitsTest() {
-        assertEquals(1, NumberHelper.getNumOfDigits(0));
-        assertEquals(1, NumberHelper.getNumOfDigits(2));
-        assertEquals(2, NumberHelper.getNumOfDigits(10));
-        assertEquals(2, NumberHelper.getNumOfDigits(-10));
+        Arrays.asList(
+                new int[]{1, 0},
+                new int[]{1, 2},
+                new int[]{2, 10},
+                new int[]{2, -10}
+        ).forEach(arr -> assertEquals(arr[0], NumberHelper.getNumOfDigits(arr[1])));
     }
 
     @Test
     public void getUniqueRandomNumbersNegativeNumberExceptionTest() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Negative number is not allowed as an argument.");
-        NumberHelper.getUniqueRandomNumbers(-1, -1);
-        NumberHelper.getUniqueRandomNumbers(-1, arraySize);
-        NumberHelper.getUniqueRandomNumbers(upperBound, -1);
-        NumberHelper.getUniqueRandomNumbers(-1, -1, -1);
-        NumberHelper.getUniqueRandomNumbers(-1, upperBound, -1);
-        NumberHelper.getUniqueRandomNumbers(-1, upperBound, arraySize);
-        NumberHelper.getUniqueRandomNumbers(lowerBound, -1, arraySize);
+        final String errorMessage = "Negative number is not allowed as an argument.";
+
+        Arrays.asList(
+                new int[] {-1, -1},
+                new int[] {-1, arraySize},
+                new int[] {upperBound, -1}
+        ).forEach(arr -> assertThrows(
+                errorMessage,
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        NumberHelper.getUniqueRandomNumbers(arr[0], arr[1]);
+                    }
+                }
+        ));
+
+        Arrays.asList(
+                new int[] {-1, -1, -1},
+                new int[] {-1, upperBound, -1},
+                new int[] {-1, upperBound, arraySize},
+                new int[] {lowerBound, -1, arraySize}
+        ).forEach(arr -> assertThrows(
+                errorMessage,
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        NumberHelper.getUniqueRandomNumbers(arr[0], arr[1], arr[2]);
+                    }
+                }
+        ));
     }
 
     @Test
     public void getUniqueRandomNumbersLowerToUpperExceptionTest() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Lower Bound cannot be larger than Upper Bound.");
-        NumberHelper.getUniqueRandomNumbers(upperBound, lowerBound, arraySize);
+        assertThrows(
+                "Lower Bound cannot be larger than Upper Bound.",
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        NumberHelper.getUniqueRandomNumbers(upperBound, lowerBound, arraySize);
+                    }
+                }
+        );
     }
 
     @Test
     public void getUniqueRandomNumbersNotEnoughNumbersExceptionTest() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Not enough unique numbers available for the array size.");
-        NumberHelper.getUniqueRandomNumbers(lowerBound, arraySize, upperBound);
+        assertThrows(
+                "Not enough unique numbers available for the array size.",
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        NumberHelper.getUniqueRandomNumbers(lowerBound, arraySize, upperBound);
+                    }
+                }
+        );
     }
 
     @Test
