@@ -16,20 +16,18 @@ limitations under the License.
 
 package com.shaiksphere.mindsmine.jems;
 
-import org.junit.Rule;
 import org.junit.Test;
 
-import org.junit.rules.ExpectedException;
+import org.junit.function.ThrowingRunnable;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 public class URLHelperTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void isValidURLPassTest() {
@@ -84,17 +82,41 @@ public class URLHelperTest {
 
     @Test
     public void appendQueryInvalidURLExceptionTest() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Fatal Error. 'url'. Invalid URL.");
-        URLHelper.appendQuery(null, null, null);
-        URLHelper.appendQuery(":// should fail", null, null);
+        assertThrows(
+                "Fatal Error. 'url'. Invalid URL.",
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        URLHelper.appendQuery(null, null, null);
+                    }
+                }
+        );
+
+        assertThrows(
+                "Fatal Error. 'url'. Invalid URL.",
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        URLHelper.appendQuery(":// should fail", null, null);
+                    }
+                }
+        );
     }
 
     @Test
     public void appendQueryInvalidParamExceptionTest() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("Fatal Error. 'param'. Only non-empty string(s) are allowed as arguments.");
-        URLHelper.appendQuery("http://www.google.com", null, null);
+        assertThrows(
+                "Fatal Error. 'param'. Only non-empty string(s) are allowed as arguments.",
+                IllegalArgumentException.class,
+                new ThrowingRunnable() {
+                    @Override
+                    public void run() throws Throwable {
+                        URLHelper.appendQuery("http://www.google.com", null, null);
+                    }
+                }
+        );
     }
 
     @Test

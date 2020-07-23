@@ -28,6 +28,15 @@ public final class RegExHelper {
     private RegExHelper() {}
 
     /**
+     * Represents the <a href="https://owasp.org/www-community/OWASP_Validation_Regex_Repository">OWASP</a> version of
+     * email regex.
+     *
+     * @since 4.0.0
+     *
+     */
+    public static final String EMAIL = "(^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$)";
+
+    /**
      * Represents the most generic regex pattern for the Longitude.
      *
      * @since 1.0

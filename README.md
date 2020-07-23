@@ -12,6 +12,11 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**4.0.0**
+* Added Swing support methods
+* Added regular expression test method
+* Updated the tests code
+
 **3.5.6**
 * Java 14 compliant
 
