@@ -29,7 +29,6 @@ public class RegExHelperTest {
     private final Pattern US_PHONE_NUMBER_PATTERN = Pattern.compile(RegExHelper.US_PHONE_NUMBER);
 
     private boolean isValidEmail(String email) {
-        System.out.println(email);
         return EMAIL_PATTERN.matcher(email).matches();
     }
 

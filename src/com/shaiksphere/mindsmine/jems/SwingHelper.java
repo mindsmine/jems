@@ -27,10 +27,6 @@ import java.io.File;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-// TODO For unit testing - https://www.oreilly.com/library/view/java-extreme-programming/0596003870/ch04s17.html
-
-// TODO For unit testing - https://www.infoworld.com/article/2073056/automate-gui-tests-for-swing-applications.html
-
 /**
  * A collection of useful static methods to deal with Java Swing Framework.
  *
