@@ -2,6 +2,8 @@
 
 ## Java Extended MethodS ##
 
+[![Build Status](https://circleci.com/gh/mindsmine/mindsmine-jems.svg?style=shield)](https://circleci.com/gh/mindsmine/mindsmine-jems)
+
 [![Build Status](https://travis-ci.org/mindsmine/mindsmine-jems.svg?branch=master)](https://travis-ci.org/mindsmine/mindsmine-jems)
 
 Java SDK provides ample ways to help with general coding requirements. Yet, while development, some methods for easier
