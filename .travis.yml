@@ -1,12 +1,22 @@
 language: java
+
 install: true
-script: mvn clean package
+
+before_install:
+  - echo "Downloading Maven"
+  - wget https://dlcdn.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz
+  - echo "Installing Maven"
+  - tar xzvf apache-maven-3.8.2-bin.tar.gz
+  - echo "Adding Paths"
+  - export MAVEN_HOME=`pwd`/apache-maven-3.8.2
+  - export PATH=${MAVEN_HOME}/bin:${PATH}
+  - mvn -v
 
 jdk:
-  - openjdk14
-
-sudo: false
+  - openjdk16
 
 notifications:
   email:
-  - false
+    - false
+
+script: mvn clean package
