@@ -113,7 +113,7 @@ limitations under the License.
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>(,3.8.1]</version>
+                                    <version>[3.8.2,)</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
                                     <version>[16,)</version>
@@ -259,11 +259,6 @@ limitations under the License.
                                         <strong>${project.organization.name} ${project.name} ${project.version}</strong>
                                         ]]>
                                     </header>
-                                    <footer>
-                                        <![CDATA[
-                                        <strong>${project.organization.name} ${project.name} ${project.version}</strong>
-                                        ]]>
-                                    </footer>
                                     <bottom>
                                         <![CDATA[
                                         Copyright &#169; 2008, ${IMPL_YEAR},
