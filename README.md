@@ -4,7 +4,7 @@
 
 [![Build Status](https://circleci.com/gh/mindsmine/mindsmine-jems.svg?style=shield)](https://circleci.com/gh/mindsmine/mindsmine-jems)
 
-[![Build Status](https://travis-ci.org/mindsmine/mindsmine-jems.svg?branch=master)](https://travis-ci.org/mindsmine/mindsmine-jems)
+[![Build Status](https://api.travis-ci.com/mindsmine/mindsmine-jems.svg?branch=main)](https://app.travis-ci.com/github/mindsmine/mindsmine-jems)
 
 Java SDK provides ample ways to help with general coding requirements. Yet, while development, some methods for easier
 manipulation of core classes are missing. **mindsmine-jems** (Java Extended MethodS) makes an attempt at providing
