@@ -4,7 +4,7 @@ install: true
 
 before_install:
   - echo "Downloading Maven"
-  - wget https://dlcdn.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz
+  - wget --no-check-certificate https://dlcdn.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz
   - echo "Installing Maven"
   - tar xzvf apache-maven-3.8.2-bin.tar.gz
   - echo "Adding Paths"
