@@ -14,6 +14,9 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**4.0.1**
+* Java 17 compliant
+
 **4.0.0**
 * Added Swing support methods
 * Added regular expression test method

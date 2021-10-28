@@ -13,7 +13,7 @@ before_install:
   - mvn -v
 
 jdk:
-  - openjdk16
+  - openjdk17
 
 notifications:
   email:
