@@ -61,46 +61,6 @@ public final class StringHelper {
     }
 
     /**
-     * Returns <code>true</code> if the passed value is an empty string, false otherwise.
-     * <br><br>
-     * The value is deemed to be an empty string if it is either:
-     * <ul>
-     *     <li><code>null</code></li>
-     *     <li>a zero-length string</li>
-     *     <li>comprised of whitespaces as defined by {@link java.lang.Character#isWhitespace(char)}</li>
-     * </ul>
-     * <br>
-     * Example usage:
-     *
-     * <pre>
-     *     StringHelper.isBlank(null)          = true
-     *     StringHelper.isBlank("")            = true
-     *     StringHelper.isBlank(" ")           = true
-     *     StringHelper.isBlank("something ")  = false
-     * </pre>
-     *
-     * @param string The value to test.
-     *
-     * @return <code>true</code> if the passed value is an empty string, false otherwise.
-     *
-     * @since 1.0
-     *
-     */
-    public static boolean isBlank(String string) {
-        if (string == null || string.isEmpty()) {
-            return true;
-        }
-
-        for (int i = 0; i < string.length(); i++) {
-            if (!Character.isWhitespace(string.charAt(i))) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
      * Returns <code>true</code> if the passed values are equal, ignoring the case, <code>false</code> otherwise.
      * <br><br>
      * Convenience method equivalent to <code>StringHelper.areEqual(string1, string2, true)</code>
@@ -127,7 +87,7 @@ public final class StringHelper {
      *         When the lenient flag is set to <code>true</code>, the comparison will ignore the case and trim the
      *         strings before comparing; the two strings are considered equal if,
      *         <ul>
-     *             <li>Both strings are blank, as defined by {@link StringHelper#isBlank(String)}.</li>
+     *             <li>Both strings are blank, as defined by {@link String#isBlank()}.</li>
      *             <li>Trimmed versions of both strings, as defined by {@link String#trim()}, are equal.</li>
      *         </ul>
      *     </li>
@@ -179,9 +139,8 @@ public final class StringHelper {
      */
     public static boolean areEqual(String string1, String string2, boolean lenient) {
         if (lenient) {
-            return  isBlank(string1) &&
-                    isBlank(string2) ||
-                    !(isBlank(string1) || isBlank(string2)) &&
+            return  getNullSafe(string1).isBlank() && getNullSafe(string2).isBlank() ||
+                    !(getNullSafe(string1).isBlank() || getNullSafe(string2).isBlank()) &&
                     string1.trim().equalsIgnoreCase(string2.trim());
         }
 
@@ -212,7 +171,7 @@ public final class StringHelper {
      *
      */
     public static boolean isOnlyDigits(String string) {
-        return (!isBlank(string) && string.matches("\\d+"));
+        return (!getNullSafe(string).isBlank() && string.matches("\\d+"));
     }
 
     /**
