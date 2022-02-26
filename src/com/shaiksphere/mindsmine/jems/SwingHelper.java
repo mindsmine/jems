@@ -198,7 +198,7 @@ public final class SwingHelper {
         jFileChooser.setFileSelectionMode(fileSelectionMode);
         jFileChooser.setAcceptAllFileFilterUsed(false);
 
-        if (!StringHelper.isBlank(dialogTitle)) {
+        if (dialogTitle != null && !dialogTitle.isBlank()) {
             jFileChooser.setDialogTitle(dialogTitle);
         }
 

@@ -14,6 +14,9 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 
 ### Releases ###
 
+**4.8.0**
+* Removed `StringHelper.isBlank()`. Use `String#isBlank()` instead.
+
 **4.0.1**
 * Java 17 compliant
 

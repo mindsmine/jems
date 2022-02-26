@@ -31,15 +31,6 @@ public class StringHelperTest {
     }
 
     @Test
-    public void isBlankTest() {
-        assertTrue(StringHelper.isBlank(null));
-        assertTrue(StringHelper.isBlank(""));
-        assertTrue(StringHelper.isBlank(" "));
-
-        assertFalse(StringHelper.isBlank("something "));
-    }
-
-    @Test
     public void areEqualLenientTest() {
         assertTrue(StringHelper.areEqual(null, null, true));
         assertTrue(StringHelper.areEqual(null, "", true));

@@ -51,7 +51,7 @@ public final class URLHelper {
      *
      */
     public static boolean isValidURL(String url) {
-        if (StringHelper.isBlank(url)) {
+        if (StringHelper.getNullSafe(url).isBlank()) {
             return false;
         }
 
@@ -83,7 +83,7 @@ public final class URLHelper {
             throw new IllegalArgumentException("Fatal Error. 'url'. Invalid URL.");
         }
 
-        if (StringHelper.isBlank(param)) {
+        if (StringHelper.getNullSafe(param).isBlank()) {
             throw new IllegalArgumentException("Fatal Error. 'param'. Only non-empty string(s) are allowed as arguments.");
         }
 
@@ -97,7 +97,7 @@ public final class URLHelper {
 
         var query = _url.getQuery();
 
-        if (StringHelper.isBlank(query)) {
+        if (StringHelper.getNullSafe(query).isBlank()) {
             query = param + '=' + value;
         } else {
             query += '&' + param + '=' + value;
@@ -105,7 +105,7 @@ public final class URLHelper {
 
         var hash = _url.getRef();
 
-        query = '?' + query + ((!StringHelper.isBlank(hash)) ? '#' + hash : "");
+        query = '?' + query + ((!StringHelper.getNullSafe(hash).isBlank()) ? '#' + hash : "");
 
         URL _finalURL = null;
 
