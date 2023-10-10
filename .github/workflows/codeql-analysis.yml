@@ -12,7 +12,9 @@
 
 name: "CodeQL"
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   analyze:
@@ -26,23 +28,13 @@ jobs:
       security-events: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '20'
-        distribution: 'temurin'
-        cache: maven
-
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
         languages: 'java'
 
     - name: Build with Maven
-      run: mvn clean package
+      uses: ./.github/workflows/build.yml
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
