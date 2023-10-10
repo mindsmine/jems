@@ -2,13 +2,9 @@
 
 ## Java Extended MethodS ##
 
-[![Build Status](https://circleci.com/gh/mindsmine/mindsmine-jems.svg?style=shield)](https://circleci.com/gh/mindsmine/mindsmine-jems)
+[![Maven](https://github.com/github/docs/actions/workflows/maven.yml/badge.svg)](https://github.com/mindsmine/mindsmine-jems/actions/workflows/maven.yml)
 
-[![Build Status](https://api.travis-ci.com/mindsmine/mindsmine-jems.svg?branch=main)](https://app.travis-ci.com/github/mindsmine/mindsmine-jems)
-
-[![Maven](https://github.com/github/docs/actions/workflows/maven.yml/badge.svg)](https://github.com/mindsmine/mindsmine-js/actions/workflows/maven.yml)
-
-[![CodeQL](https://github.com/github/docs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mindsmine/mindsmine-js/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/github/docs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mindsmine/mindsmine-jems/actions/workflows/codeql-analysis.yml)
 
 
 Java SDK provides ample ways to help with general coding requirements. Yet, while development, some methods for easier
