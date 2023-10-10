@@ -28,13 +28,13 @@ jobs:
       security-events: write
 
     steps:
+    - name: Build with Maven
+      uses: ./.github/workflows/build.yml
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
         languages: 'java'
-
-    - name: Build with Maven
-      uses: ./.github/workflows/build.yml
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
