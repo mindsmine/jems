@@ -6,6 +6,11 @@
 
 [![Build Status](https://api.travis-ci.com/mindsmine/mindsmine-jems.svg?branch=main)](https://app.travis-ci.com/github/mindsmine/mindsmine-jems)
 
+[![Maven](https://github.com/github/docs/actions/workflows/maven.yml/badge.svg)](https://github.com/mindsmine/mindsmine-js/actions/workflows/maven.yml)
+
+[![CodeQL](https://github.com/github/docs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mindsmine/mindsmine-js/actions/workflows/codeql-analysis.yml)
+
+
 Java SDK provides ample ways to help with general coding requirements. Yet, while development, some methods for easier
 manipulation of core classes are missing. **mindsmine-jems** (Java Extended MethodS) makes an attempt at providing
 utility classes such as String manipulation, Object wrappers, amongst others.
@@ -13,6 +18,10 @@ utility classes such as String manipulation, Object wrappers, amongst others.
 ---
 
 ### Releases ###
+
+**4.8.1**
+* Java 21 compliant
+* Using Github actions in lieu of Circle CI and Travis CI
 
 **4.8.0**
 * Removed `StringHelper.isBlank()`. Use `String#isBlank()` instead.
