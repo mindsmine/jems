@@ -2,7 +2,7 @@
 
 ## Java Extended MethodS ##
 
-[![Maven](https://github.com/mindsmine/mindsmine-jems/actions/workflows/maven.yml/badge.svg)](https://github.com/mindsmine/mindsmine-jems/actions/workflows/maven.yml)
+[![Maven](https://github.com/mindsmine/mindsmine-jems/actions/workflows/build.yml/badge.svg)](https://github.com/mindsmine/mindsmine-jems/actions/workflows/build.yml)
 
 [![CodeQL](https://github.com/mindsmine/mindsmine-jems/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mindsmine/mindsmine-jems/actions/workflows/codeql-analysis.yml)
 
